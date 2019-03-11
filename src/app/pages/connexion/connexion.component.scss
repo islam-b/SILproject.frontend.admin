@@ -1,0 +1,57 @@
+:host {
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  display: block;
+  /*background: -moz-linear-gradient(-45deg, #2980b9 0%, #3498d8 0%, #1abc9c 100%);
+  background: -webkit-linear-gradient(-45deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  background-color: #000000;*/
+}
+#signinbox {
+
+  height: 550px;
+  border:solid 1px lightgrey;
+  border-radius: 10px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  background-color: #34495e;
+}
+#signinbox img {
+
+  float: right;
+  transform: translateY(-70px);
+  width: 128px;
+  height: 128px;
+}
+#innerbox {
+  width: 100%;
+  height: 100%;
+  margin-top: -125px;
+
+  border-radius: 10px;
+  box-shadow: white 0px 0px 5px;
+}
+#title {
+  font-size: 34px;
+  color:white;
+  text-align: center;
+  margin-top: 80px;
+}
+#line {
+  border: solid 1px #2980b9;
+  border-radius: 50px;
+  width: 75px;
+}
+#signinform input{
+  border:none;
+  border-radius: 50px;
+  opacity: 0.5;
+}
+#signinform button {
+  font-weight: bold;
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  border-radius: 5px;
+}
+#signinform button:hover {
+  opacity: 0.9;
+}
+
+
