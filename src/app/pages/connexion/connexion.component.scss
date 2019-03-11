@@ -42,14 +42,15 @@
   margin-top: 80px;
 }
 #line {
-  border: solid 1px #2980b9;
+  border: solid 1px #3498d8;
   border-radius: 50px;
   width: 75px;
 }
 #signinform input{
   border:none;
   border-radius: 50px;
-  opacity: 0.5;
+  opacity: 0.8;
+  color: white;
 }
 #signinform button {
   font-weight: bold;
@@ -62,7 +63,7 @@
 
 #errorMsg {
   text-align: center;
-  color: rosybrown;
+  color: #e51d27;
 
 }
 #errorMsg b {

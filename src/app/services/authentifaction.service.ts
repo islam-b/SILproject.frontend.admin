@@ -42,7 +42,7 @@ export class AuthentificationService {
       // The response body may contain clues as to what went wrong,
       console.error(`Backend returned code ${error.status}`);
       if (error.status === 401) {
-        e = 'Adresse Mail ou mot de passe incorrect';
+        e = 'Adresse mail ou mot de passe incorrect';
       } else {
         e = 'Une errur a été produite, réessayer ulterieurement';
       }

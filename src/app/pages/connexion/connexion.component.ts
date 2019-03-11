@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthentificationService} from '../../services/authentifaction.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
@@ -16,20 +16,32 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit(): void {
     this.signinform = this.formBuilder.group({
-      Mail: '',
-      Mdp: ''
+      Mail: ['', [Validators.required, Validators.email]],
+      Mdp: ['', [Validators.required]]
     });
   }
 
+  private formIsValid(): boolean {
+    if (this.signinform.get('Mail').hasError('required') || this.signinform.get('Mdp').hasError('required')) {
+      this.errorMsg = 'Remplissez les champs nécéssaires';
+      return false;
+    } else if (this.signinform.get('Mail').hasError('email')) {
+      this.errorMsg = 'Saisissez un email valide';
+      return false;
+    } else {return true;}
+  }
+
   onSubmit() {
-    const value = this.signinform.value;
-    this.authentifcationService.signin(value['Mail'], value['Mdp']).subscribe( data => {
+   if (this.formIsValid()) {
+      const value = this.signinform.value;
+      this.authentifcationService.signin(value['Mail'], value['Mdp']).subscribe(data => {
         this.authentifcationService.setAuthentified(data);
         console.log(data);
         this.router.navigate(['/acceuil']);
-    }, error => {
+      }, error => {
         this.errorMsg = error;
-    });
+      });
+    }
   }
 
 }
