@@ -13,6 +13,12 @@
   margin-top: 70px;
   margin-bottom: 70px;
   background-color: #34495e;
+  background-image: url("../../../assets/images/bg_city.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+
+
 }
 #signinbox img {
 
@@ -54,4 +60,13 @@
   opacity: 0.9;
 }
 
+#errorMsg {
+  text-align: center;
+  color: rosybrown;
+
+}
+#errorMsg b {
+
+  font-size: 17px;
+}
 

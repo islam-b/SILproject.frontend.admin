@@ -13,17 +13,20 @@
             <div id="title">Connexion</div>
             <div id="line" class="m-auto"></div>
 
-            <form id="signinform" class=" w-100 p-4 mt-4">
+            <form [formGroup]="signinform" (ngSubmit)="onSubmit()" id="signinform" class=" w-100 p-4 mt-4">
               <mat-form-field class="mx-auto my-1 w-100">
-                <input matInput placeholder="Adresse mail" type="text">
+                <input matInput placeholder="Adresse mail" type="text" formControlName="Mail">
               </mat-form-field>
               <mat-form-field class="mx-auto my-1 w-100">
-                <input matInput placeholder="Mot de passe" type="password">
+                <input matInput placeholder="Mot de passe" type="password" formControlName="Mdp">
               </mat-form-field>
 
               <button class="btn btn-primary w-100">Se connecter</button>
             </form>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-10 offset-1 m-auto "><div id="errorMsg" class="m-auto "><mdb-icon  *ngIf="errorMsg" fas icon="exclamation-circle"></mdb-icon><b class="ml-2">{{errorMsg}}</b></div></div>
         </div>
       </div>
     </div>
