@@ -1,0 +1,18 @@
+header {
+  max-height:70px;
+  background-color:#fafafa;
+}
+header form {
+  transform: translateY(5px);
+}
+header img {
+  width: 85%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+header i {
+  float:right;
+  margin-right: 10px;
+  transform: translateY(-27px);
+  display: inline;
+}

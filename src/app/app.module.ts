@@ -11,13 +11,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
