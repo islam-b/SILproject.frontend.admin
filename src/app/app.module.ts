@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -11,17 +11,16 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
-import { HeaderComponent } from './components/header/header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+
+import {AdministrationModule} from './pages/administration/administration.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
-    AcceuilComponent,
-    HeaderComponent,
-    SidenavComponent
+    AcceuilComponent
+
   ],
   imports: [
     BrowserModule,
@@ -30,8 +29,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MaterialModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AdministrationModule
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [AuthentificationService, AuthGuard],
   bootstrap: [AppComponent]
 })
