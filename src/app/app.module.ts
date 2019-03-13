@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
 import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     ConnexionComponent,
     AcceuilComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

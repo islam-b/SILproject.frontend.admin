@@ -1,16 +1,26 @@
-<header class="m-auto">
+<header class="m-auto z-depth-1">
 
     <div class="row m-auto">
-      <div class="col-lg-2 m-auto">
-        <img  src="../../../assets/images/try3.png">
+      <div class="col-lg-2 mr-auto">
+        <img  class="mr-auto" src="../../../assets/images/try3.png">
       </div>
       <div class="col-lg-6 offset-1 m-auto">
         <form [formGroup]="searchForm" class="m-auto w-100 ">
           <input type="text" class="form-control m-auto w-100" formControlName="recherche" placeholder=" Rechercher..." >
-          <i class="fas fa-search"></i>
+          <span><i class="fas fa-search"></i></span>
         </form>
       </div>
-      <div class="col-lg-3 ">
+      <div class="col-lg-2 offset-1 my-auto ml-auto">
+        <div id="rside">
+          <div class="dropdown m-auto">
+            <img [src]="profilepic" class="rounded-circle">
+            <div class="dropdown-content z-depth-1">
+              <p>Menu</p>
+            </div>
+          </div>
+          <div id="sep" class="m-auto">  </div>
+          <button type="button" (click)="deconnexion()" class="m-auto btn-sm btn-outline-danger waves-effect">Déconnexion</button>
+        </div>
 
       </div>
     </div>

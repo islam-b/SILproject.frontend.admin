@@ -1,18 +1,63 @@
 header {
   max-height:70px;
   background-color:#fafafa;
+
 }
 header form {
-  transform: translateY(5px);
+  transform: translateY(7px);
+}
+header form input {
+  border-radius: 7px;
 }
 header img {
-  width: 85%;
+
+  width: 100%;
   margin-bottom: 10px;
   margin-top: 10px;
 }
-header i {
+header form i {
   float:right;
   margin-right: 10px;
   transform: translateY(-27px);
   display: inline;
+}
+
+#sep {
+  height: 50px;
+  border: solid #dadada;
+  border-width: 0px 0px 0px 1px;
+  transform: translateX(-2px);
+}
+#rside {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+
+}
+
+.dropdown img {
+  width: 45px;
+  height: 45px;
+  border: solid 3px #2980b9;
+
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  top: 55px;
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
