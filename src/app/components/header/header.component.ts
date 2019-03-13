@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
     this.searchForm = this.formBuilder.group({
       recherche: ''
     });

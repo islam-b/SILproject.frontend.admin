@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
 
-  private signinform: FormGroup;
+  signinform: FormGroup;
   private errorMsg: string
   constructor(private authentifcationService: AuthentificationService, private formBuilder: FormBuilder, private router:Router) { }
 
@@ -28,7 +28,7 @@ export class ConnexionComponent implements OnInit {
     } else if (this.signinform.get('Mail').hasError('email')) {
       this.errorMsg = 'Saisissez un email valide';
       return false;
-    } else {return true;}
+    } else {return true; }
   }
 
   onSubmit() {
