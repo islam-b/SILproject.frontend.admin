@@ -15,7 +15,7 @@ export class AuthentificationService {
   constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem('administrateur') !== null) {
       this.isAuth = true;
-      this.router.navigate(['/admin']);
+      this.router.navigate(['/admin/admin-marques']);
     }
   }
   signin(Mail: string, Mdp: string) {

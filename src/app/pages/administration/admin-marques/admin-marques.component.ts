@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {MarqueDataSource} from '../../../dataSources/marqueDataSource';
+import {MarqueService} from '../../../services/marque.service';
+
 
 @Component({
   selector: 'app-admin-marques',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMarquesComponent implements OnInit {
 
-  constructor() { }
+
+  displayedColumns: string[] = ['CodeMarque', 'NomMarque', 'Logo'];
+  private dataSource: MarqueDataSource;
+
+  searchForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private marqueService: MarqueService) { }
 
   ngOnInit() {
+    this.dataSource = new MarqueDataSource(this.marqueService);
+    this.searchForm = this.formBuilder.group({
+      recherche: ''
+    });
   }
 
 }

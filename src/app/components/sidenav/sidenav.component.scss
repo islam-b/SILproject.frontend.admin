@@ -1,0 +1,20 @@
+h6 {
+  font-weight:bold;
+  padding-left: 10px;
+}
+.choix {
+ padding-left: 20px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition-property: background-color;
+  transition-duration: 300ms;
+}
+.choix:hover {
+  cursor:pointer;
+  background-color: lightgray;
+
+}
+.selected {
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  color:white;
+}

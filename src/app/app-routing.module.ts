@@ -7,7 +7,7 @@ import {AdminComponent} from './pages/administration/admin/admin.component';
 
 const routes: Routes = [
   {path: 'connexion', component: ConnexionComponent},
-  {path: '', redirectTo: 'admin', pathMatch: 'full'}
+  {path: '', redirectTo: 'admin/admin-marques', pathMatch: 'full'}
 ];
 
 @NgModule({

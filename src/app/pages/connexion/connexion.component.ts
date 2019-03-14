@@ -37,7 +37,7 @@ export class ConnexionComponent implements OnInit {
       this.authentifcationService.signin(value['Mail'], value['Mdp']).subscribe(data => {
         this.authentifcationService.setAuthentified(data);
         console.log(data);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/admin-marques']);
       }, error => {
         this.errorMsg = error;
       });
