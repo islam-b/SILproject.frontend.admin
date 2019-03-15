@@ -11,7 +11,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
-
 import {AdministrationModule} from './pages/administration/administration.module';
 
 
@@ -20,7 +19,6 @@ import {AdministrationModule} from './pages/administration/administration.module
     AppComponent,
     ConnexionComponent,
     AcceuilComponent
-
   ],
   imports: [
     BrowserModule,

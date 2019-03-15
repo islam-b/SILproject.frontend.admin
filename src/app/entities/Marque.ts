@@ -1,7 +1,7 @@
 export interface Marque {
-  CodeMarque: {type: string};
-  NomMarque: {type: string};
+  CodeMarque: string;
+  NomMarque: string;
   images: [{
-    CheminImage: {type: string};
+    CheminImage: string;
   }];
 }

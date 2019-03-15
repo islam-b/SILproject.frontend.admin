@@ -1,0 +1,36 @@
+
+table {
+
+  width: 100%;
+}
+#tab-container {
+  padding: 0px;
+  margin:0px 0px 0px -15px;
+  width: 100%;
+}
+
+.mark-logo {
+  height:40px;
+  width: 40px;
+  margin: 5px;
+}
+
+.op {
+  padding: 10px;
+  width:38px;
+  height: 38px;
+  margin: 5px 3px;
+  transition-property: background-color, border-radius;
+  transition-duration: 300ms;
+}
+.op:hover {
+  background-color: #eaeaea;
+  border-radius: 10px;
+}
+.op:active {
+  background-color: lightgray;
+  border-radius: 10px;
+}
+th {
+  width: 25%;
+}

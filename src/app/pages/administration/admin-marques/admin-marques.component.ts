@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {MarqueDataSource} from '../../../dataSources/marqueDataSource';
-import {MarqueService} from '../../../services/marque.service';
+
+import {MatDialog} from '@angular/material';
+import {NouvelleMarqueComponent} from '../nouvelle-marque/nouvelle-marque.component';
 
 
 @Component({
@@ -10,20 +11,17 @@ import {MarqueService} from '../../../services/marque.service';
   styleUrls: ['./admin-marques.component.scss']
 })
 export class AdminMarquesComponent implements OnInit {
-
-
-  displayedColumns: string[] = ['CodeMarque', 'NomMarque', 'Logo'];
-  private dataSource: MarqueDataSource;
-
   searchForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private marqueService: MarqueService) { }
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSource = new MarqueDataSource(this.marqueService);
     this.searchForm = this.formBuilder.group({
       recherche: ''
     });
   }
-
+  nouvelleMarque() {
+    this.dialog.open(NouvelleMarqueComponent, {
+      width: '250px'
+    });
+  }
 }

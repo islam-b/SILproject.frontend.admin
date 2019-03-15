@@ -16,9 +16,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthentificationService} from '../../services/authentifaction.service';
 import {AuthGuard} from '../../services/guards/authentificationGuard';
+import { NouvelleMarqueComponent } from './nouvelle-marque/nouvelle-marque.component';
+import {MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {TableMarquesComponent} from '../../components/table-marques/table-marques.component';
 
 @NgModule({
-  declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent, HeaderComponent, FooterComponent, SidenavComponent],
+  declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
+    HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,  TableMarquesComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -27,8 +31,12 @@ import {AuthGuard} from '../../services/guards/authentificationGuard';
     MaterialModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
+  entryComponents: [NouvelleMarqueComponent],
   providers: [AuthentificationService, AuthGuard],
 
 })
