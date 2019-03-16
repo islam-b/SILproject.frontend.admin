@@ -19,10 +19,12 @@ import {AuthGuard} from '../../services/guards/authentificationGuard';
 import { NouvelleMarqueComponent } from './nouvelle-marque/nouvelle-marque.component';
 import {MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {TableMarquesComponent} from '../../components/table-marques/table-marques.component';
+import { ModifierMarqueComponent } from './modifier-marque/modifier-marque.component';
+import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.component';
 
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
-    HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,  TableMarquesComponent],
+    HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,  TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -36,7 +38,7 @@ import {TableMarquesComponent} from '../../components/table-marques/table-marque
     MatPaginatorModule,
     MatSortModule
   ],
-  entryComponents: [NouvelleMarqueComponent],
+  entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent],
   providers: [AuthentificationService, AuthGuard],
 
 })

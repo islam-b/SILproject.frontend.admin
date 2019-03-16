@@ -16,3 +16,20 @@
   transition-property: border;
   transition-duration: 300ms;
 }
+
+#errorMsg {
+  text-align: center;
+  color: #e51d27;
+}
+::placeholder {
+  color: darkgray;
+}
+::selection {
+  background: #2980b9;
+}
+.in.ng-touched.ng-invalid {
+  border-color: #e51d27;
+}
+.invalid {
+  border-color: #e51d27;
+}

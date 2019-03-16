@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {MatDialog} from '@angular/material';
 import {NouvelleMarqueComponent} from '../nouvelle-marque/nouvelle-marque.component';
+import {SupprimerMarqueComponent} from '../supprimer-marque/supprimer-marque.component';
 
 
 @Component({

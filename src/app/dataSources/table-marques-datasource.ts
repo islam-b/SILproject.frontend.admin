@@ -1,9 +1,9 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
-import {Marque} from '../../entities/Marque';
-import {MarqueService} from '../../services/marque.service';
+import {Observable, of as observableOf, merge, Subscription} from 'rxjs';
+import {Marque} from '../entities/Marque';
+import {MarqueService} from '../services/marque.service';
 
 
 /**
@@ -13,6 +13,7 @@ import {MarqueService} from '../../services/marque.service';
  */
 export class TableMarquesDataSource extends DataSource<Marque> {
   data: Marque[] = [];
+  subscription: Subscription;
   isLoading = true;
 
   constructor(private marqueService: MarqueService, private paginator: MatPaginator, private sort: MatSort) {
@@ -28,12 +29,13 @@ export class TableMarquesDataSource extends DataSource<Marque> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
 
-    this.marqueService.getAllMarques().subscribe( data => {
+    this.subscription = this.marqueService.marquesSubject.subscribe( data => {
       this.isLoading = false;
       this.data = data;
     });
+    this.marqueService.showAllmarque();
     const dataMutations = [
-      this.marqueService.getAllMarques(),
+      this.marqueService.marquesSubject,
       this.paginator.page,
       this.sort.sortChange
     ];

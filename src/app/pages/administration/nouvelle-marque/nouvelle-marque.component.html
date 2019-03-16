@@ -2,15 +2,19 @@
   <div class="row p-2">
     <div class="col-12 m-auto">
     <form id="nouvelleMarqueForm" [formGroup]="nouvelleMarqueForm">
-      <h3>Nouvelle marque</h3>
+      <div class="d-flex justify-content-between align-items-center mb-0">
+      <h3 style="transform:translateY(20px);" >Nouvelle marque</h3>
+        <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" diameter="40" ></mat-progress-spinner>
+        <img *ngIf="complete" style="width:40px;height:40px;" src="../../../../assets/images/complete.png">
+      </div>
       <hr>
       <div class="form-group">
        Code marque :
-        <input formControlName="CodeMarque" class="in form-control" type="text">
+        <input placeholder="Ex: 57642" formControlName="CodeMarque" class="in form-control" type="text">
       </div>
       <div class="form-group mb-0">
         Désignation :
-        <input formControlName="NomMarque" class="in form-control " type="text">
+        <input placeholder="Ex: Infinity"  formControlName="NomMarque" class="in form-control " type="text">
       </div>
       <div class="form-group mt-2">
         <div class="d-flex justify-content-between align-items-end mb-2">
@@ -33,8 +37,8 @@
 
       <hr>
       <div style="text-align: right;" class="mr-0 w-100">
-        <button (click)="onNoClick()" class="mr-0 btn btn-light">Annuler</button>
-        <button (click)="onSubmit()" class="mr-0 btn btn-primary" >Ajouter</button>
+        <button (click)="onNoClick()" class="z-depth-0 mr-0 btn btn-light">Annuler</button>
+        <button type="submit" (click)="onSubmit()" class="mr-0 btn btn-primary" >Ajouter</button>
       </div>
 
     </form>

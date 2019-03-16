@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Marque} from '../entities/Marque';
 import {catchError, map} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Subject, throwError} from 'rxjs';
 import {AuthentificationService} from './authentifaction.service';
 
 @Injectable({
@@ -11,10 +11,22 @@ import {AuthentificationService} from './authentifaction.service';
 export class MarqueService {
 
   baseUrl: string = localStorage.getItem('baseUrl');
+  marquesSubject = new Subject<Marque[]>();
+  marques: Marque[];
+
   constructor(private authService: AuthentificationService, private http: HttpClient) { }
 
   getAllMarques() {
     return this.http.get<Marque[]>(`${this.baseUrl}marques`);
+  }
+
+
+  getMarque(code) {
+    return this.http.get<Marque>(`${this.baseUrl}marques/${code}`);
+  }
+
+  emitMarques() {
+    this.marquesSubject.next(this.marques);
   }
 
   newMarque(marque) {
@@ -33,6 +45,14 @@ export class MarqueService {
     );
   }
 
+  deleteMarque(code) {
+    const header = this.authService.createAuthorizationHeader();
+    return this.http.delete(`${this.baseUrl}marques/${code}`, {headers: header}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
   private handleError(error: HttpErrorResponse) {
     let e: string;
     if (error.error instanceof ErrorEvent) {
@@ -50,9 +70,31 @@ export class MarqueService {
       } else if (error.status === 404) {
         e = 'Cette marque n\'existe pas';
       } else {
-        e = 'Une errur s\'est produite, réessayer ulterieurement';
+        e = 'Une erreur s\'est produite, réessayer ulterieurement';
       }
     }
     return throwError(e);
+  }
+
+  showAllmarque() {
+    this.getAllMarques().subscribe(marques => {
+      this.marques = marques;
+      this.emitMarques();
+    });
+  }
+  showNewMarque(code) {
+    this.getMarque(code).subscribe(marque => {
+      this.marques.unshift(marque);
+      this.emitMarques();
+    });
+  }
+  hideDeletedMarque(code) {
+    this.marques = this.marques.filter(m => {
+      if (m.CodeMarque === code) {
+        return false;
+      }
+      return true;
+    });
+    this.emitMarques();
   }
 }
