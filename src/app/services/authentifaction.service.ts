@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {Router} from '@angular/router';
@@ -35,7 +35,7 @@ export class AuthentificationService {
     let e: string;
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      e = 'Une errur a été produite, réessayer ulterieurement';
+      e = 'Une erreur s\'est produite, réessayer ulterieurement';
       console.error('An error occurred:', error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
@@ -48,5 +48,14 @@ export class AuthentificationService {
       }
     }
     return throwError(e);
+  }
+
+  createAuthorizationHeader(): HttpHeaders {
+    const admin = JSON.parse(localStorage.getItem('administrateur'));
+    if (admin) {
+      console.log(admin.token);
+      return new HttpHeaders().set('Authorization', 'Bearer ' + admin.token);
+    }
+    return undefined;
   }
 }

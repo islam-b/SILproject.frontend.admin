@@ -21,7 +21,7 @@ export class AdminMarquesComponent implements OnInit {
   }
   nouvelleMarque() {
     this.dialog.open(NouvelleMarqueComponent, {
-      width: '250px'
+      width: '35%'
     });
   }
 }

@@ -1,9 +1,43 @@
-<h1 mat-dialog-title>Hi </h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
+<div class="container">
+  <div class="row p-2">
+    <div class="col-12 m-auto">
+    <form id="nouvelleMarqueForm" [formGroup]="nouvelleMarqueForm">
+      <h3>Nouvelle marque</h3>
+      <hr>
+      <div class="form-group">
+       Code marque :
+        <input formControlName="CodeMarque" class="in form-control" type="text">
+      </div>
+      <div class="form-group mb-0">
+        Désignation :
+        <input formControlName="NomMarque" class="in form-control " type="text">
+      </div>
+      <div class="form-group mt-2">
+        <div class="d-flex justify-content-between align-items-end mb-2">
+          Logo :
+          <img  style="height:50px;width:50px;" class="img-thumbnail" [src]="imgURL">
 
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button cdkFocusInitial>Ok</button>
+        </div>
+
+      <div class=" input-group mb-3">
+        <div class="custom-file">
+          <input formControlName="imageMarque" #file (change)="setFile(file.files)" type="file" class="in custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+          <label class="in custom-file-label" for="inputGroupFile03">{{ fileName }}</label>
+        </div>
+      </div>
+      </div>
+
+        <div id="errorMsg"  *ngIf="errorMsg" style="text-align: center">
+          <mdb-icon  fas icon="exclamation-circle"></mdb-icon><b class="ml-2">{{errorMsg}}</b>
+        </div>
+
+      <hr>
+      <div style="text-align: right;" class="mr-0 w-100">
+        <button (click)="onNoClick()" class="mr-0 btn btn-light">Annuler</button>
+        <button (click)="onSubmit()" class="mr-0 btn btn-primary" >Ajouter</button>
+      </div>
+
+    </form>
+  </div>
+  </div>
 </div>
