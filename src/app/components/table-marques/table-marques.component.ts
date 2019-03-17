@@ -3,11 +3,21 @@ import {MatDialog, MatDialogRef, MatPaginator, MatSort} from '@angular/material'
 import { TableMarquesDataSource } from '../../dataSources/table-marques-datasource';
 import {MarqueService} from '../../services/marque.service';
 import {SupprimerMarqueComponent} from '../../pages/administration/supprimer-marque/supprimer-marque.component';
+import {ModifierMarqueComponent} from '../../pages/administration/modifier-marque/modifier-marque.component';
+import {trigger, state, style, animate, transition} from '@angular/animations';
 
 @Component({
   selector: 'app-table-marques',
   templateUrl: './table-marques.component.html',
-  styleUrls: ['./table-marques.component.css']
+  styleUrls: ['./table-marques.component.css'],
+  animations: [
+      trigger('popOverState', [
+      state('not', style({backgroundColor: 'transparent'})),
+      state('changed', style({backgroundColor: 'lightgreen'})),
+        transition('not => changed', animate('300ms ease-out')),
+        transition('changed => not', animate('1000ms ease-in'))
+      ])
+  ]
 })
 export class TableMarquesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -28,5 +38,18 @@ export class TableMarquesComponent implements OnInit {
       width: '35%'
     });
     dialogRef.componentInstance.CodeMarque = code;
+  }
+
+  modifierMarque(code, rowIndex) {
+    let dialogRef: MatDialogRef<ModifierMarqueComponent> = this.dialog.open(ModifierMarqueComponent, {
+      width: '35%'
+    });
+    dialogRef.componentInstance.CodeMarque = code;
+    dialogRef.componentInstance.rowIndex = rowIndex;
+    console.log(rowIndex);
+  }
+
+  getStateName(index) {
+    return this.marqueService.states[index] ? 'changed' : 'not';
   }
 }

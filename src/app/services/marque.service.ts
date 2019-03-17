@@ -13,6 +13,7 @@ export class MarqueService {
   baseUrl: string = localStorage.getItem('baseUrl');
   marquesSubject = new Subject<Marque[]>();
   marques: Marque[];
+  states;
 
   constructor(private authService: AuthentificationService, private http: HttpClient) { }
 
@@ -26,12 +27,19 @@ export class MarqueService {
   }
 
   emitMarques() {
+    this.states = new Array(this.marques.length);
     this.marquesSubject.next(this.marques);
   }
 
   newMarque(marque) {
     const header = this.authService.createAuthorizationHeader();
     return this.http.post(`${this.baseUrl}marques`, marque, {headers: header}).pipe(
+      catchError(this.handleError)
+    );
+  }
+  editMarque(marque) {
+    const header = this.authService.createAuthorizationHeader();
+    return this.http.put(`${this.baseUrl}marques/${marque.CodeMarque}`, marque, {headers: header}).pipe(
       catchError(this.handleError)
     );
   }
@@ -88,6 +96,13 @@ export class MarqueService {
       this.emitMarques();
     });
   }
+  showModifiedMarque(code) {
+    this.getMarque(code).subscribe(marque => {
+      const i = this.marques.findIndex(m => m.CodeMarque === code);
+      this.marques[i] = marque;
+      this.emitMarques();
+    });
+  }
   hideDeletedMarque(code) {
     this.marques = this.marques.filter(m => {
       if (m.CodeMarque === code) {
@@ -96,5 +111,14 @@ export class MarqueService {
       return true;
     });
     this.emitMarques();
+  }
+
+  async notify(rowIndex) {
+    this.states[rowIndex] = !this.states[rowIndex];
+    await this.delay(500);
+    this.states[rowIndex] = !this.states[rowIndex];
+  }
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 }

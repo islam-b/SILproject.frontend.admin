@@ -24,7 +24,8 @@ import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.co
 
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
-    HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,  TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent],
+    HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,
+    TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -36,9 +37,9 @@ import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.co
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
-  entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent],
+  entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent, ModifierMarqueComponent],
   providers: [AuthentificationService, AuthGuard],
 
 })

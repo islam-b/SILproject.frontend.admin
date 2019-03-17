@@ -7,19 +7,19 @@
       <!-- Position Column -->
       <ng-container matColumnDef="Code">
         <th mat-sort-header mat-header-cell *matHeaderCellDef> Code </th>
-        <td mat-cell *matCellDef="let element"> {{element.CodeMarque}} </td>
+        <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;"> {{element.CodeMarque}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="Nom">
         <th mat-sort-header mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let element"> {{element.NomMarque}} </td>
+        <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;"> {{element.NomMarque}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="Logo">
         <th mat-header-cell *matHeaderCellDef> Logo </th>
-        <td mat-cell *matCellDef="let element">
+        <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
           <img  class="mark-logo" *ngIf="element.images[0] !== undefined" [src]="element.images[0].CheminImage">
           <img  class="mark-logo" *ngIf="element.images[0] === undefined" src="../../../assets/images/no-photo.png">
         </td>
@@ -28,11 +28,11 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="Gestion">
         <th mat-header-cell *matHeaderCellDef> Gestion </th>
-        <td mat-cell *matCellDef="let element">
+        <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
           <div style="display: flex;flex-direction: row;">
 
             <img class="op" src="../../../assets/images/Icons/new-user.png">
-            <img class="op" src="../../../assets/images/Icons/edit.png">
+            <img (click)="modifierMarque(element.CodeMarque,i)" class="op" src="../../../assets/images/Icons/edit.png">
             <img (click)="supprimerMarque(element.CodeMarque)" class="op" src="../../../assets/images/Icons/rubbish-bin-delete-button.png">
 
           </div>
