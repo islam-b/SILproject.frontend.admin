@@ -118,6 +118,20 @@ export class MarqueService {
     await this.delay(500);
     this.states[rowIndex] = !this.states[rowIndex];
   }
+  filter(filterValue) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase();
+    console.log(filterValue);
+    let code: string;
+    let nom: string;
+    let data = this.marques.filter(m => {
+      code = m.CodeMarque.toString().toLowerCase();
+      nom = m.NomMarque.toString().toLowerCase();
+      return nom.includes(filterValue) || code.includes(filterValue);
+    });
+    this.states = new Array(data.length);
+    this.marquesSubject.next(data);
+  }
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }

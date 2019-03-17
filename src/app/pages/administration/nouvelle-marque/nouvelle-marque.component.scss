@@ -2,20 +2,13 @@
   background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
 }
 
-.in:focus{
-  border-color: #3498d8 !important;
-  border-style: solid;
-  border-width: 1px 1px 1px 6px;
-  box-shadow: none;
-}
-.in{
+/*@import "../../../../../node_modules/bootstrap/scss/functions";
+$custom-file-text: (
+  en: "Browse",
+  fr: "Importer"
+);
 
-  border:solid 1px #dadada;
-  color: #34495e;
-
-  transition-property: border;
-  transition-duration: 300ms;
-}
+@import "../../../../../node_modules/angular-bootstrap-md/schematics/";*/
 
 #errorMsg {
   text-align: center;
@@ -33,3 +26,23 @@
 .invalid {
   border-color: #e51d27;
 }
+
+
+
+
+
+.in:focus{
+  border-color: #3498d8 !important;
+  border-style: solid;
+  border-width: 1px 1px 1px 6px;
+  box-shadow: none;
+}
+.in{
+
+  border:solid 1px #dadada;
+  color: #34495e;
+
+  transition-property: border;
+  transition-duration: 300ms;
+}
+

@@ -5,19 +5,9 @@
       <div id="line"></div>
     </div>
   </div>
-  <div class="row my-auto pt-3">
-    <div class="col-md-6 my-auto">
-      <form [formGroup]="searchForm" class="w-100 my-auto">
-        <input type="text" class="form-control my-auto w-100" formControlName="recherche" placeholder=" Rechercher une marque..." >
-        <span><i class="fas fa-search"></i></span>
-      </form>
-    </div>
-    <div class="col-md-3 offset-3 my-auto">
-      <button id="new_mark" (click)="nouvelleMarque()" class="btn btn-primary my-auto mr-auto">Nouvelle marque...</button>
-    </div>
-  </div>
-  <div class="row mt-4 mx-auto ">
-    <div class="col-md-12 m-auto ">
+
+  <div class="row ">
+    <div class="col-md-12 ">
       <app-table-marques></app-table-marques>
     </div>
   </div>

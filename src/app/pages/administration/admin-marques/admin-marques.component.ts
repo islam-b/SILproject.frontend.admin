@@ -12,17 +12,10 @@ import {SupprimerMarqueComponent} from '../supprimer-marque/supprimer-marque.com
   styleUrls: ['./admin-marques.component.scss']
 })
 export class AdminMarquesComponent implements OnInit {
-  searchForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {}
 
-  ngOnInit() {
-    this.searchForm = this.formBuilder.group({
-      recherche: ''
-    });
-  }
-  nouvelleMarque() {
-    this.dialog.open(NouvelleMarqueComponent, {
-      width: '35%'
-    });
-  }
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit() {}
+
+
 }

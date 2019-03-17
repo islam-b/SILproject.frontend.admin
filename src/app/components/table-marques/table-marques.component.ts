@@ -5,6 +5,8 @@ import {MarqueService} from '../../services/marque.service';
 import {SupprimerMarqueComponent} from '../../pages/administration/supprimer-marque/supprimer-marque.component';
 import {ModifierMarqueComponent} from '../../pages/administration/modifier-marque/modifier-marque.component';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import {NouvelleMarqueComponent} from '../../pages/administration/nouvelle-marque/nouvelle-marque.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-table-marques',
@@ -13,8 +15,8 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
   animations: [
       trigger('popOverState', [
       state('not', style({backgroundColor: 'transparent'})),
-      state('changed', style({backgroundColor: 'lightgreen'})),
-        transition('not => changed', animate('300ms ease-out')),
+      state('changed', style({backgroundColor: '#68ffe1'})),
+        transition('not => changed', animate('500ms ease-out')),
         transition('changed => not', animate('1000ms ease-in'))
       ])
   ]
@@ -27,10 +29,20 @@ export class TableMarquesComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['Nom', 'Code', 'Logo', 'Gestion'];
 
-  constructor(private marqueService: MarqueService, public dialog: MatDialog) {}
+  searchForm: FormGroup;
+  constructor(private formBuilder: FormBuilder, private marqueService: MarqueService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSource = new TableMarquesDataSource(this.marqueService, this.paginator, this.sort);
+    this.searchForm = this.formBuilder.group({
+      filter: ''
+    });
+  }
+
+  nouvelleMarque() {
+    this.dialog.open(NouvelleMarqueComponent, {
+      width: '35%'
+    });
   }
 
   supprimerMarque(code) {
@@ -48,6 +60,11 @@ export class TableMarquesComponent implements OnInit {
     dialogRef.componentInstance.rowIndex = rowIndex;
     console.log(rowIndex);
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter(filterValue);
+  }
+
 
   getStateName(index) {
     return this.marqueService.states[index] ? 'changed' : 'not';

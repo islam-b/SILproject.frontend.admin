@@ -20,7 +20,7 @@ export class NouvelleMarqueComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<NouvelleMarqueComponent>, private formBuilder: FormBuilder,
               private marqueService: MarqueService) {}
 
-  onNoClick(): void {
+  onNoClick() {
     this.dialogRef.close();
   }
 
@@ -52,6 +52,7 @@ export class NouvelleMarqueComponent implements OnInit {
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
+            await this.marqueService.notify(0);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
@@ -62,6 +63,7 @@ export class NouvelleMarqueComponent implements OnInit {
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
+          await this.marqueService.notify(0);
           this.onNoClick();
         }
       }, error => {

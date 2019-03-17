@@ -23,8 +23,7 @@ export class ModifierMarqueComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ModifierMarqueComponent>, private formBuilder: FormBuilder,
               private marqueService: MarqueService) {}
 
-  async onNoClick(): void {
-    await this.marqueService.notify(this.rowIndex);
+  onNoClick() {
     this.dialogRef.close();
   }
 
@@ -63,6 +62,7 @@ export class ModifierMarqueComponent implements OnInit {
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
+            await this.marqueService.notify(this.rowIndex);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
@@ -73,6 +73,7 @@ export class ModifierMarqueComponent implements OnInit {
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
+          await this.marqueService.notify(this.rowIndex);
           this.onNoClick();
         }
       }, error => {

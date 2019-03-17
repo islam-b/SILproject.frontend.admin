@@ -17,10 +17,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthentificationService} from '../../services/authentifaction.service';
 import {AuthGuard} from '../../services/guards/authentificationGuard';
 import { NouvelleMarqueComponent } from './nouvelle-marque/nouvelle-marque.component';
-import {MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatPaginatorIntl, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {TableMarquesComponent} from '../../components/table-marques/table-marques.component';
 import { ModifierMarqueComponent } from './modifier-marque/modifier-marque.component';
 import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.component';
+import {MatPaginatorIntlFr} from '../../components/table-marques/CustomPaginator';
 
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
@@ -40,7 +41,7 @@ import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.co
     MatSortModule,
   ],
   entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent, ModifierMarqueComponent],
-  providers: [AuthentificationService, AuthGuard],
+  providers: [AuthentificationService, AuthGuard, { provide: MatPaginatorIntl, useClass: MatPaginatorIntlFr}],
 
 })
 export class AdministrationModule { }

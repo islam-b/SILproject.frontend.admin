@@ -76,10 +76,14 @@ export class TableMarquesDataSource extends DataSource<Marque> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'Code': return compare(a.CodeMarque, b.CodeMarque, isAsc);
-        case 'Nom': return compare(+a.NomMarque, +b.NomMarque, isAsc);
+        case 'Nom': return compare(a.NomMarque, b.NomMarque, isAsc);
         default: return 0;
       }
     });
+  }
+
+  filter(filterValue) {
+    this.marqueService.filter(filterValue);
   }
 }
 
