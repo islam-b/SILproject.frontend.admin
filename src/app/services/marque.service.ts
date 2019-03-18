@@ -13,7 +13,6 @@ export class MarqueService {
   baseUrl: string = localStorage.getItem('baseUrl');
   marquesSubject = new Subject<Marque[]>();
   marques: Marque[];
-  states;
 
   constructor(private authService: AuthentificationService, private http: HttpClient) { }
 
@@ -27,7 +26,6 @@ export class MarqueService {
   }
 
   emitMarques() {
-    this.states = new Array(this.marques.length);
     this.marquesSubject.next(this.marques);
   }
 
@@ -61,6 +59,7 @@ export class MarqueService {
   }
 
 
+
   private handleError(error: HttpErrorResponse) {
     let e: string;
     if (error.error instanceof ErrorEvent) {
@@ -82,57 +81,5 @@ export class MarqueService {
       }
     }
     return throwError(e);
-  }
-
-  showAllmarque() {
-    this.getAllMarques().subscribe(marques => {
-      this.marques = marques;
-      this.emitMarques();
-    });
-  }
-  showNewMarque(code) {
-    this.getMarque(code).subscribe(marque => {
-      this.marques.unshift(marque);
-      this.emitMarques();
-    });
-  }
-  showModifiedMarque(code) {
-    this.getMarque(code).subscribe(marque => {
-      const i = this.marques.findIndex(m => m.CodeMarque === code);
-      this.marques[i] = marque;
-      this.emitMarques();
-    });
-  }
-  hideDeletedMarque(code) {
-    this.marques = this.marques.filter(m => {
-      if (m.CodeMarque === code) {
-        return false;
-      }
-      return true;
-    });
-    this.emitMarques();
-  }
-
-  async notify(rowIndex) {
-    this.states[rowIndex] = !this.states[rowIndex];
-    await this.delay(500);
-    this.states[rowIndex] = !this.states[rowIndex];
-  }
-  filter(filterValue) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase();
-    console.log(filterValue);
-    let code: string;
-    let nom: string;
-    let data = this.marques.filter(m => {
-      code = m.CodeMarque.toString().toLowerCase();
-      nom = m.NomMarque.toString().toLowerCase();
-      return nom.includes(filterValue) || code.includes(filterValue);
-    });
-    this.states = new Array(data.length);
-    this.marquesSubject.next(data);
-  }
-  delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 }

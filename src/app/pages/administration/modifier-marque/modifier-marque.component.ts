@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {MarqueService} from '../../../services/marque.service';
+import {ViewUpdateService} from '../../../services/view-update.service';
 
 @Component({
   selector: 'app-modifier-marque',
@@ -21,7 +22,7 @@ export class ModifierMarqueComponent implements OnInit {
   rowIndex;
   modifierMarqueForm: FormGroup;
   constructor(public dialogRef: MatDialogRef<ModifierMarqueComponent>, private formBuilder: FormBuilder,
-              private marqueService: MarqueService) {}
+              private marqueService: MarqueService, private view: ViewUpdateService) {}
 
   onNoClick() {
     this.dialogRef.close();
@@ -58,22 +59,22 @@ export class ModifierMarqueComponent implements OnInit {
         if (this.logoFile !== null) {
           //delete old logo
           this.marqueService.uploadLogoMarque(this.logoFile, marque.CodeMarque).subscribe(async data2 => {
-            this.marqueService.showModifiedMarque(marque.CodeMarque);
+            this.view.showModifiedMarque(marque.CodeMarque);
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
-            await this.marqueService.notify(this.rowIndex);
+            await this.view.notify(this.rowIndex);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
             this.errorMsg = error;
           });
         } else {
-          this.marqueService.showModifiedMarque(marque.CodeMarque);
+          this.view.showModifiedMarque(marque.CodeMarque);
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
-          await this.marqueService.notify(this.rowIndex);
+          await this.view.notify(this.rowIndex);
           this.onNoClick();
         }
       }, error => {

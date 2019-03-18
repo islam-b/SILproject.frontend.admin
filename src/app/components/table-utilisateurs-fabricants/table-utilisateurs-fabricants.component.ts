@@ -1,28 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogRef, MatPaginator, MatSort} from '@angular/material';
-import { TableMarquesDataSource } from '../../dataSources/table-marques-datasource';
+import { TableUtilisateursFabricantsDataSource } from '../../dataSources/table-utilisateurs-fabricants-datasource';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {MarqueService} from '../../services/marque.service';
+import {NouvelleMarqueComponent} from '../../pages/administration/nouvelle-marque/nouvelle-marque.component';
 import {SupprimerMarqueComponent} from '../../pages/administration/supprimer-marque/supprimer-marque.component';
 import {ModifierMarqueComponent} from '../../pages/administration/modifier-marque/modifier-marque.component';
-import {trigger, state, style, animate, transition} from '@angular/animations';
-import {NouvelleMarqueComponent} from '../../pages/administration/nouvelle-marque/nouvelle-marque.component';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {TableMarquesComponent} from '../table-marques/table-marques.component';
+import {TableMarquesDataSource} from '../../dataSources/table-marques-datasource';
 import {ViewUpdateService} from '../../services/view-update.service';
 
 @Component({
-  selector: 'app-table-marques',
-  templateUrl: './table-marques.component.html',
-  styleUrls: ['./table-marques.component.css'],
+  selector: 'app-table-utilisateurs-fabricants',
+  templateUrl: './table-utilisateurs-fabricants.component.html',
+  styleUrls: ['./table-utilisateurs-fabricants.component.css'],
   animations: [
-      trigger('popOverState', [
+    trigger('popOverState', [
       state('not', style({backgroundColor: 'transparent'})),
       state('changed', style({backgroundColor: '#68ffe1'})),
-        transition('not => changed', animate('500ms ease-out')),
-        transition('changed => not', animate('1000ms ease-in'))
-      ])
+      transition('not => changed', animate('500ms ease-out')),
+      transition('changed => not', animate('1000ms ease-in'))
+    ])
   ]
 })
-export class TableMarquesComponent implements OnInit {
+export class TableUtilisateursFabricantsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: TableMarquesDataSource;

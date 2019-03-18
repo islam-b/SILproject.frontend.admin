@@ -3,16 +3,10 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import {Observable, of as observableOf, merge, Subscription} from 'rxjs';
 import {Marque} from '../entities/Marque';
-import {MarqueService} from '../services/marque.service';
 import {ViewUpdateService} from '../services/view-update.service';
+import {MarqueService} from '../services/marque.service';
 
-
-/**
- * Data source for the TableMarques view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class TableMarquesDataSource extends DataSource<Marque> {
+export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
   data: Marque[] = [];
   subscription: Subscription;
   isLoading = true;
@@ -83,7 +77,6 @@ export class TableMarquesDataSource extends DataSource<Marque> {
       }
     });
   }
-
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */

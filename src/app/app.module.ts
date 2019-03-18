@@ -12,6 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
 import {AdministrationModule} from './pages/administration/administration.module';
+import { TableUtilisateursFabricantsComponent } from './components/table-utilisateurs-fabricants/table-utilisateurs-fabricants.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import {AdministrationModule} from './pages/administration/administration.module
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
-    AdministrationModule
+    AdministrationModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [AuthentificationService, AuthGuard],

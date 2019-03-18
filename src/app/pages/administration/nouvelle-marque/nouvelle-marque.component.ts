@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MarqueService} from '../../../services/marque.service';
+import {ViewUpdateService} from '../../../services/view-update.service';
 
 @Component({
   selector: 'app-nouvelle-marque',
@@ -18,7 +19,7 @@ export class NouvelleMarqueComponent implements OnInit {
   complete = false;
   nouvelleMarqueForm: FormGroup;
   constructor(public dialogRef: MatDialogRef<NouvelleMarqueComponent>, private formBuilder: FormBuilder,
-              private marqueService: MarqueService) {}
+              private marqueService: MarqueService, private view: ViewUpdateService) {}
 
   onNoClick() {
     this.dialogRef.close();
@@ -48,22 +49,22 @@ export class NouvelleMarqueComponent implements OnInit {
         CodeMarque: marque.CodeMarque, NomMarque: marque.NomMarque}).subscribe( async data1 => {
         if (this.logoFile !== null) {
           this.marqueService.uploadLogoMarque(this.logoFile, marque.CodeMarque).subscribe(async data2 => {
-            this.marqueService.showNewMarque(marque.CodeMarque);
+            this.view.showNewMarque(marque.CodeMarque);
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
-            await this.marqueService.notify(0);
+            await this.view.notify(0);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
             this.errorMsg = error;
           });
         } else {
-          this.marqueService.showNewMarque(marque.CodeMarque);
+          this.view.showNewMarque(marque.CodeMarque);
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
-          await this.marqueService.notify(0);
+          await this.view.notify(0);
           this.onNoClick();
         }
       }, error => {

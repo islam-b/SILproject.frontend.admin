@@ -22,11 +22,12 @@ import {TableMarquesComponent} from '../../components/table-marques/table-marque
 import { ModifierMarqueComponent } from './modifier-marque/modifier-marque.component';
 import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.component';
 import {MatPaginatorIntlFr} from '../../components/table-marques/CustomPaginator';
+import {TableUtilisateursFabricantsComponent} from '../../components/table-utilisateurs-fabricants/table-utilisateurs-fabricants.component';
 
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
     HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,
-    TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent],
+    TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent, TableUtilisateursFabricantsComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
