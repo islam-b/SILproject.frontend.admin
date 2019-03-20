@@ -5,7 +5,7 @@
   <hr style="margin:10px;">
   <h6>Gérer les utilisateurs</h6>
   <div [ngClass]="{'choix': true, 'selected': selectedItem == 3}" (click)="selectedItem = 3;" [routerLink]="['/admin/admin-utilfab']"> Vue d'ensemble </div>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 4}"> Nouvel utilisateur  </div>
+  <div [ngClass]="{'choix': true, 'selected': selectedItem == 4}" (click)="nouvelUtilisateur()"> Nouvel utilisateur  </div>
   <div [ngClass]="{'choix': true, 'selected': selectedItem == 5}"> Utilisateurs bloqués </div>
 
 </div>

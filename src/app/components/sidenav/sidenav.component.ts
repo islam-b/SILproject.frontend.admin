@@ -3,6 +3,7 @@ import {ViewUpdateService} from '../../services/view-update.service';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {NouvelleMarqueComponent} from '../../pages/administration/nouvelle-marque/nouvelle-marque.component';
+import {NouvelUtilisateurComponent} from '../../pages/administration/nouvel-utilisateur/nouvel-utilisateur.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -25,6 +26,12 @@ export class SidenavComponent implements OnInit {
   nouvelleMarque() {
     this.dialog.open(NouvelleMarqueComponent, {
       width: '35%'
+    });
+  }
+
+  nouvelUtilisateur() {
+    this.dialog.open(NouvelUtilisateurComponent, {
+      width: '50%'
     });
   }
 

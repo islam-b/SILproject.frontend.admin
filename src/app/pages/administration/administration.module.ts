@@ -23,11 +23,16 @@ import { ModifierMarqueComponent } from './modifier-marque/modifier-marque.compo
 import { SupprimerMarqueComponent } from './supprimer-marque/supprimer-marque.component';
 import {MatPaginatorIntlFr} from '../../components/table-marques/CustomPaginator';
 import {TableUtilisateursFabricantsComponent} from '../../components/table-utilisateurs-fabricants/table-utilisateurs-fabricants.component';
+import { NouvelUtilisateurComponent } from './nouvel-utilisateur/nouvel-utilisateur.component';
+import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
+import { SupprimerUtilisateurComponent } from './supprimer-utilisateur/supprimer-utilisateur.component';
 
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
     HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,
-    TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent, TableUtilisateursFabricantsComponent],
+    TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent,
+    TableUtilisateursFabricantsComponent, NouvelUtilisateurComponent, ModifierUtilisateurComponent,
+    SupprimerUtilisateurComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
@@ -41,7 +46,8 @@ import {TableUtilisateursFabricantsComponent} from '../../components/table-utili
     MatPaginatorModule,
     MatSortModule,
   ],
-  entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent, ModifierMarqueComponent],
+  entryComponents: [NouvelleMarqueComponent, SupprimerMarqueComponent, ModifierMarqueComponent,
+                    NouvelUtilisateurComponent, SupprimerUtilisateurComponent, ModifierUtilisateurComponent],
   providers: [AuthentificationService, AuthGuard, { provide: MatPaginatorIntl, useClass: MatPaginatorIntlFr}],
 
 })

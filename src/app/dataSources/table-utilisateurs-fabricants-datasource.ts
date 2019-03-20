@@ -2,16 +2,16 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import {Observable, of as observableOf, merge, Subscription} from 'rxjs';
-import {Marque} from '../entities/Marque';
 import {ViewUpdateService} from '../services/view-update.service';
-import {MarqueService} from '../services/marque.service';
+import {UtilisateurfabricantService} from '../services/utilisateurfabricant.service';
+import {UtilisateurFabricant} from '../entities/UtilisateurFabricant';
 
-export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
-  data: Marque[] = [];
+export class TableUtilisateursFabricantsDataSource extends DataSource<UtilisateurFabricant> {
+  data: UtilisateurFabricant[] = [];
   subscription: Subscription;
   isLoading = true;
 
-  constructor(private view: ViewUpdateService, private marqueService: MarqueService,
+  constructor(private view: ViewUpdateService, private utilfabService: UtilisateurfabricantService,
               private paginator: MatPaginator, private sort: MatSort) {
     super();
   }
@@ -21,17 +21,19 @@ export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<Marque[]> {
+  connect(): Observable<UtilisateurFabricant[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
 
-    this.subscription = this.marqueService.marquesSubject.subscribe( data => {
+    this.subscription = this.utilfabService.utilisateursSubject.subscribe( data => {
       this.isLoading = false;
       this.data = data;
+    }, error => {
+      this.isLoading = false;
     });
-    this.view.showAllmarque();
+    this.view.showAllUsers();
     const dataMutations = [
-      this.marqueService.marquesSubject,
+      this.utilfabService.utilisateursSubject,
       this.paginator.page,
       this.sort.sortChange
     ];
@@ -54,7 +56,7 @@ export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: Marque[]) {
+  private getPagedData(data: UtilisateurFabricant[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -63,7 +65,7 @@ export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Marque[]) {
+  private getSortedData(data: UtilisateurFabricant[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -71,8 +73,11 @@ export class TableUtilisateursFabricantsDataSource extends DataSource<Marque> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'Code': return compare(a.CodeMarque, b.CodeMarque, isAsc);
-        case 'Nom': return compare(a.NomMarque, b.NomMarque, isAsc);
+        case 'Id': return compare(a.IdUserF, b.IdUserF, isAsc);
+        case 'Nom': return compare(a.Nom, b.Nom, isAsc);
+        case 'Prénom': return compare(a.Prenom, b.Prenom, isAsc);
+        case 'Téléphone': return compare(a.NumTel, b.NumTel, isAsc);
+        case 'Fabricant': return compare(a.marque.NomMarque, b.marque.NomMarque, isAsc);
         default: return 0;
       }
     });

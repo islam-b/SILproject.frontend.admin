@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {MarqueService} from './marque.service';
 import {Subject} from 'rxjs';
 import {Marque} from '../entities/Marque';
+import {UtilisateurfabricantService} from './utilisateurfabricant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class ViewUpdateService {
 
  selectedItemSubject = new Subject<number>();
  selectedItem = 1;
-  marquesStates;
-  constructor(private marqueService: MarqueService) { }
+ marquesStates;
+ usersStates;
+  constructor(private marqueService: MarqueService, private utilfabService: UtilisateurfabricantService) { }
 
   emitSelectedItem() {
     this.selectedItemSubject.next(this.selectedItem);
@@ -73,7 +75,27 @@ export class ViewUpdateService {
     this.marqueService.marquesSubject.next(data);
   }
 
+  showAllUsers() {
+    this.utilfabService.getAllUsers().subscribe(users => {
+      this.utilfabService.utilisateurs = users;
+      this.usersStates = new Array(users.length);
+      this.utilfabService.emitUtilisateurs();
+    });
+  }
+
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+  async notifyTabUsers(rowIndex) {
+    this.usersStates[rowIndex] = !this.usersStates[rowIndex];
+    await this.delay(500);
+    this.usersStates[rowIndex] = !this.usersStates[rowIndex];
+  }
+  showNewUser(id) {
+    this.utilfabService.getUser(id).subscribe(utilisateur => {
+      this.utilfabService.utilisateurs.unshift(utilisateur);
+      this.usersStates = new Array(this.utilfabService.utilisateurs.length);
+      this.utilfabService.emitUtilisateurs();
+    });
   }
 }

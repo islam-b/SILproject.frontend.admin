@@ -1,0 +1,62 @@
+#nouvelUtilisateurForm button:nth-child(2) {
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+}
+
+/*@import "../../../../../node_modules/bootstrap/scss/functions";
+$custom-file-text: (
+  en: "Browse",
+  fr: "Importer"
+);
+
+@import "../../../../../node_modules/angular-bootstrap-md/schematics/";*/
+
+#errorMsg {
+  text-align: center;
+  color: #e51d27;
+}
+::placeholder {
+  color: darkgray;
+}
+::selection {
+  background: #2980b9;
+}
+.in.ng-touched.ng-invalid {
+  border-color: #e51d27;
+}
+.invalid {
+  border-color: #e51d27;
+}
+
+
+
+
+
+.in:focus{
+  border-color: #3498d8 !important;
+  border-style: solid;
+  border-width: 1px 1px 1px 6px;
+  box-shadow: none;
+}
+.in{
+
+  border:solid 1px #dadada;
+  color: #34495e;
+
+  transition-property: border;
+  transition-duration: 300ms;
+}
+
+#fileInputContainer {
+  transform: translateY(4px)
+}
+#fileInputContainer img:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+  opacity: 1;
+  border: solid 1px #2980b9;
+}
+
+.tooltip {
+  transform: translateY(-5px)
+}
+

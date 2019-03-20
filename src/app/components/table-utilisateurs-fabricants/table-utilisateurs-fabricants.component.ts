@@ -10,6 +10,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TableMarquesComponent} from '../table-marques/table-marques.component';
 import {TableMarquesDataSource} from '../../dataSources/table-marques-datasource';
 import {ViewUpdateService} from '../../services/view-update.service';
+import {UtilisateurfabricantService} from '../../services/utilisateurfabricant.service';
+import {NouvelUtilisateurComponent} from '../../pages/administration/nouvel-utilisateur/nouvel-utilisateur.component';
 
 @Component({
   selector: 'app-table-utilisateurs-fabricants',
@@ -27,25 +29,25 @@ import {ViewUpdateService} from '../../services/view-update.service';
 export class TableUtilisateursFabricantsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: TableMarquesDataSource;
+  dataSource: TableUtilisateursFabricantsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Nom', 'Code', 'Logo', 'Gestion'];
+  displayedColumns = ['Id','Photo', 'Nom', 'Prénom', 'Fabricant', 'Compte' , 'Gestion'];
 
   searchForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private marqueService: MarqueService,
+  constructor(private formBuilder: FormBuilder, private utilfabService: UtilisateurfabricantService,
               private view: ViewUpdateService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSource = new TableMarquesDataSource(this.view, this.marqueService, this.paginator, this.sort);
+    this.dataSource = new TableUtilisateursFabricantsDataSource(this.view, this.utilfabService, this.paginator, this.sort);
     this.searchForm = this.formBuilder.group({
       filter: ''
     });
   }
 
-  nouvelleMarque() {
-    this.dialog.open(NouvelleMarqueComponent, {
-      width: '35%'
+  nouvelUtilisateur() {
+    this.dialog.open(NouvelUtilisateurComponent, {
+      width: '50%'
     });
   }
 
@@ -57,20 +59,20 @@ export class TableUtilisateursFabricantsComponent implements OnInit {
   }
 
   modifierMarque(code, rowIndex) {
-    let dialogRef: MatDialogRef<ModifierMarqueComponent> = this.dialog.open(ModifierMarqueComponent, {
+    /*let dialogRef: MatDialogRef<ModifierMarqueComponent> = this.dialog.open(ModifierMarqueComponent, {
       width: '35%'
     });
     dialogRef.componentInstance.CodeMarque = code;
     dialogRef.componentInstance.rowIndex = rowIndex;
-    console.log(rowIndex);
+    console.log(rowIndex);*/
   }
 
   applyFilter(filterValue: string) {
-    this.view.filter(filterValue);
+    //this.view.filter(filterValue);
   }
 
 
   getStateName(index) {
-    return this.view.marquesStates[index] ? 'changed' : 'not';
+    return this.view.usersStates[index] ? 'changed' : 'not';
   }
 }
