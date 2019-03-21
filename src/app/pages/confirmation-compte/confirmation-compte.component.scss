@@ -1,0 +1,40 @@
+.header {
+  height:90px;
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  text-align: center;
+}
+.footer {
+  height:40px;
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+}
+.header img {
+  height: 100%;
+  padding: 20px;
+}
+#footerImg {
+  z-index: -1;
+  position: fixed;
+  bottom: 40px;
+  right: 0px;
+  width: 40%;
+  opacity: 0.8;
+}
+form button {
+
+  background: linear-gradient(135deg, #2980b9 0%,#3498d8 0%,#1abc9c 100%);
+  border-radius: 5px;
+
+}
+
+form input.ng-touched.ng-invalid {
+  border-color: #e51d27;
+}
+.errorMsg {
+  text-align: left;
+  color: #e51d27;
+  transform: translateY(-12px);
+}
+.errorMsg b {
+  font-weight: bold;
+  font-size: 12px;
+}

@@ -14,13 +14,15 @@ import {AuthGuard} from './services/guards/authentificationGuard';
 import {AdministrationModule} from './pages/administration/administration.module';
 import { TableUtilisateursFabricantsComponent } from './components/table-utilisateurs-fabricants/table-utilisateurs-fabricants.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { ConfirmationCompteComponent } from './pages/confirmation-compte/confirmation-compte.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    ConfirmationCompteComponent
   ],
   imports: [
     BrowserModule,
