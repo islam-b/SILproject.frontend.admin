@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  baseUrl = 'http://127.0.0.1:8080/';
+  baseUrl = 'https://sayaradz.herokuapp.com/';
 
   ngOnInit(): void {
     localStorage.setItem('baseUrl', this.baseUrl);

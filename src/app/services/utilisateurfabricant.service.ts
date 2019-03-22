@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject, throwError} from 'rxjs';
 import {Marque} from '../entities/Marque';
 import {AuthentificationService} from './authentifaction.service';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {UtilisateurFabricant} from '../entities/UtilisateurFabricant';
 import {catchError} from 'rxjs/operators';
 
@@ -40,6 +40,7 @@ export class UtilisateurfabricantService {
       catchError(this.handleError)
     );
   }
+
 
   private handleError(error: HttpErrorResponse) {
     let e: string;

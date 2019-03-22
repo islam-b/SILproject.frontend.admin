@@ -9,20 +9,15 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { AuthentificationService} from './services/authentifaction.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import {AuthGuard} from './services/guards/authentificationGuard';
 import {AdministrationModule} from './pages/administration/administration.module';
-import { TableUtilisateursFabricantsComponent } from './components/table-utilisateurs-fabricants/table-utilisateurs-fabricants.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { ConfirmationCompteComponent } from './pages/confirmation-compte/confirmation-compte.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnexionComponent,
-    AcceuilComponent,
-    ConfirmationCompteComponent
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
