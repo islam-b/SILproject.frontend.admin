@@ -31,6 +31,7 @@ export class SupprimerMarqueComponent implements OnInit {
         this.onNoClick();
     }, error => {
       this.errorMsg = error;
+      this.isLoading = false;
     });
   }
 

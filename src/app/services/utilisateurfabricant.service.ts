@@ -31,6 +31,18 @@ export class UtilisateurfabricantService {
       catchError(this.handleError)
     );
   }
+  updateUser(id, user): Observable<UtilisateurFabricant> {
+    const header = this.authService.createAuthorizationHeader();
+    return this.http.put<UtilisateurFabricant>(`${this.baseUrl}utilfab/${id}`, user, {headers: header}).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteUser(id) {
+    const header = this.authService.createAuthorizationHeader();
+    return this.http.delete(`${this.baseUrl}marques/utilfab/${id}`, {headers: header}).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   uploadPhotoProfile(file, code) {
     const imgData = new FormData();

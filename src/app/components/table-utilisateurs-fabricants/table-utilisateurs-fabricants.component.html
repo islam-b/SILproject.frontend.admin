@@ -51,7 +51,7 @@
       <th mat-sort-header mat-header-cell *matHeaderCellDef> Compte </th>
       <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
         <mat-slide-toggle
-          class="example-margin"
+          class="example-margin" [checked]="element.Bloque ? false : true"
           [color]="primary">
         </mat-slide-toggle>
       </td>
@@ -62,8 +62,8 @@
       <th mat-header-cell *matHeaderCellDef> Gestion </th>
       <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
         <div style="display: flex;flex-direction: row;">
-          <img (click)="modifierMarque(element.CodeMarque,i)" class="op" src="../../../assets/images/Icons/edit.png">
-          <img (click)="supprimerMarque(element.CodeMarque)" class="op" src="../../../assets/images/Icons/rubbish-bin-delete-button.png">
+          <img (click)="modifierUtilisateur(element.IdUserF,i)" class="op" src="../../../assets/images/Icons/edit.png">
+          <img (click)="supprimerUtilisateur(element.IdUserF)" class="op" src="../../../assets/images/Icons/rubbish-bin-delete-button.png">
 
         </div>
       </td>

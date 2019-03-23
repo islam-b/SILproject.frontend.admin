@@ -1,3 +1,67 @@
-<p>
-  modifier-utilisateur works!
-</p>
+<div class="container">
+  <div class="row p-2">
+    <div class="col-12 m-auto">
+      <form id="modifierUtilisateurForm" [formGroup]="modifierUtilisateurForm">
+        <div class="d-flex justify-content-between align-items-center mb-0">
+          <h3 style="transform:translateY(20px);" >Modifier utilisateur fabricant</h3>
+          <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" diameter="40" ></mat-progress-spinner>
+          <img *ngIf="complete" style="width:40px;height:40px;" src="../../../../assets/images/complete.png">
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group">
+              Nom :
+              <input [(ngModel)]="utilisateurFabricant.Nom" formControlName="Nom" class="in form-control " type="text">
+            </div>
+            <div class="form-group">
+              Prenom :
+              <input [(ngModel)]="utilisateurFabricant.Prenom" formControlName="Prenom" class="in form-control " type="text">
+            </div>
+          </div>
+          <div class="col-md-3 m-auto p-3 " id="fileInputContainer"  >
+            <input style="display: none;" formControlName="imageUtilFab" #file (change)="setFile(file.files)" type="file" >
+            <img matTooltip="Importer une photo" (click)="openFileDialog()" style="opacity: 0.8" class=" w-100 h-100 img-thumbnail" [src]="picURL">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              Adresse mail :
+              <input [(ngModel)]="utilisateurFabricant.Mail" formControlName="Mail" class="in form-control" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              Numero téléphone :
+              <input [(ngModel)]="utilisateurFabricant.NumTel" formControlName="NumTel" class="in form-control" type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              Fabricant :
+              <select [value]="utilisateurFabricant.Fabricant" #selectF class=" in browser-default custom-select" (change)="selectOption($event.target.value)">
+                <option disabled value="0">Séléctionnez un fabricant</option>
+                <option *ngFor="let marque of marques" [value]="marque.CodeMarque">{{marque.NomMarque}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="errorMsg"  *ngIf="errorMsg" style="text-align: center">
+          <mdb-icon  fas icon="exclamation-circle"></mdb-icon><b class="ml-2">{{errorMsg}}</b>
+        </div>
+
+        <hr>
+        <div style="text-align: right;" class="mr-0 w-100">
+          <button (click)="onNoClick()" class="z-depth-0 mr-0 btn btn-light">Annuler</button>
+          <button (click)="onSubmit()" type="submit" class="mr-0 btn btn-primary" >Modifier</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

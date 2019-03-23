@@ -12,6 +12,8 @@ import {TableMarquesDataSource} from '../../dataSources/table-marques-datasource
 import {ViewUpdateService} from '../../services/view-update.service';
 import {UtilisateurfabricantService} from '../../services/utilisateurfabricant.service';
 import {NouvelUtilisateurComponent} from '../../pages/administration/nouvel-utilisateur/nouvel-utilisateur.component';
+import {ModifierUtilisateurComponent} from '../../pages/administration/modifier-utilisateur/modifier-utilisateur.component';
+import {SupprimerUtilisateurComponent} from '../../pages/administration/supprimer-utilisateur/supprimer-utilisateur.component';
 
 @Component({
   selector: 'app-table-utilisateurs-fabricants',
@@ -51,24 +53,24 @@ export class TableUtilisateursFabricantsComponent implements OnInit {
     });
   }
 
-  supprimerMarque(code) {
-    let dialogRef: MatDialogRef<SupprimerMarqueComponent> = this.dialog.open(SupprimerMarqueComponent, {
+  supprimerUtilisateur(id) {
+    let dialogRef: MatDialogRef<SupprimerUtilisateurComponent> = this.dialog.open(SupprimerUtilisateurComponent, {
       width: '35%'
     });
-    dialogRef.componentInstance.CodeMarque = code;
+    dialogRef.componentInstance.idUtilisateur = id;
   }
 
-  modifierMarque(code, rowIndex) {
-    /*let dialogRef: MatDialogRef<ModifierMarqueComponent> = this.dialog.open(ModifierMarqueComponent, {
-      width: '35%'
+  modifierUtilisateur(id, rowIndex) {
+    let dialogRef: MatDialogRef<ModifierUtilisateurComponent> = this.dialog.open(ModifierUtilisateurComponent, {
+      width: '50%'
     });
-    dialogRef.componentInstance.CodeMarque = code;
+    dialogRef.componentInstance.idUtilisateur = id;
     dialogRef.componentInstance.rowIndex = rowIndex;
-    console.log(rowIndex);*/
+    console.log(rowIndex);
   }
 
   applyFilter(filterValue: string) {
-    //this.view.filter(filterValue);
+    this.view.filterUsers(filterValue);
   }
 
 

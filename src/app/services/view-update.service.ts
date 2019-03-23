@@ -98,4 +98,40 @@ export class ViewUpdateService {
       this.utilfabService.emitUtilisateurs();
     });
   }
+  showModifiedUser(id) {
+    this.utilfabService.getUser(id).subscribe(user => {
+      const i = this.utilfabService.utilisateurs.findIndex(u => u.IdUserF === id);
+      this.utilfabService.utilisateurs[i] = user;
+      this.usersStates = new Array(this.utilfabService.utilisateurs.length);
+      this.utilfabService.emitUtilisateurs();
+    });
+  }
+  hideDeletedUser(id) {
+    this.utilfabService.utilisateurs = this.utilfabService.utilisateurs.filter(u => {
+      if (u.IdUserF === id) {
+        return false;
+      }
+      return true;
+    });
+    this.usersStates = new Array(this.utilfabService.utilisateurs.length);
+    this.utilfabService.emitUtilisateurs();
+  }
+  filterUsers(filterValue) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase();
+    console.log(filterValue);
+    let id: string;
+    let nom: string;
+    let prenom: string;
+    let fabricant: string;
+    let data = this.utilfabService.utilisateurs.filter(u => {
+      id = u.IdUserF.toString().toLowerCase();
+      nom = u.Nom.toString().toLowerCase();
+      prenom = u.Prenom.toString().toLowerCase();
+      fabricant = u.marque.NomMarque.toString().toLowerCase();
+      return nom.includes(filterValue) || prenom.includes(filterValue) || id.includes(filterValue) || fabricant.includes(filterValue);
+    });
+    this.usersStates = new Array(data.length);
+    this.utilfabService.utilisateursSubject.next(data);
+  }
 }
