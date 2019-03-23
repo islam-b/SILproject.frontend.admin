@@ -51,8 +51,7 @@
       <th mat-sort-header mat-header-cell *matHeaderCellDef> Compte </th>
       <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
         <mat-slide-toggle
-          class="example-margin" [checked]="element.Bloque ? false : true"
-          [color]="primary">
+          class="example-margin" #slide [checked]="!element.Bloque" (change)="toggleblock(element.IdUserF,$event)" color="primary">
         </mat-slide-toggle>
       </td>
     </ng-container>

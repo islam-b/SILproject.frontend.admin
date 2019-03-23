@@ -8,6 +8,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 import {NouvelleMarqueComponent} from '../../pages/administration/nouvelle-marque/nouvelle-marque.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ViewUpdateService} from '../../services/view-update.service';
+import {NouvelUtilisateurComponent} from '../../pages/administration/nouvel-utilisateur/nouvel-utilisateur.component';
 
 @Component({
   selector: 'app-table-marques',
@@ -39,6 +40,13 @@ export class TableMarquesComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       filter: ''
     });
+  }
+
+  nouvelUtilisateur(codeMarque) {
+    let dialogRef: MatDialogRef<NouvelUtilisateurComponent> = this.dialog.open(NouvelUtilisateurComponent, {
+      width: '50%'
+    });
+    dialogRef.componentInstance.selectedFab = codeMarque;
   }
 
   nouvelleMarque() {

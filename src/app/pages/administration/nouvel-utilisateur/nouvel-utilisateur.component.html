@@ -43,7 +43,7 @@
           <div class="col-md-12">
             <div class="form-group">
               Fabricant :
-              <select #selectF class=" in browser-default custom-select" (change)="selectOption($event.target.value)">
+              <select #selectF [value]="selectedFab" class=" in browser-default custom-select" (change)="selectOption($event.target.value)">
                 <option disabled value="0">Séléctionnez un fabricant</option>
               <option *ngFor="let marque of marques" [value]="marque.CodeMarque">{{marque.NomMarque}}</option>
               </select>

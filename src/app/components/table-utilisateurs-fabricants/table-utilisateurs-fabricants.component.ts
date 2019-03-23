@@ -34,7 +34,7 @@ export class TableUtilisateursFabricantsComponent implements OnInit {
   dataSource: TableUtilisateursFabricantsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Id','Photo', 'Nom', 'Prénom', 'Fabricant', 'Compte' , 'Gestion'];
+  displayedColumns = ['Id', 'Photo', 'Nom', 'Prénom', 'Fabricant', 'Compte' , 'Gestion'];
 
   searchForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private utilfabService: UtilisateurfabricantService,
@@ -72,7 +72,10 @@ export class TableUtilisateursFabricantsComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.view.filterUsers(filterValue);
   }
+  toggleblock(id, value) {
 
+    this.utilfabService.setBlock(id, {Bloque: !value.checked}).subscribe( () => {},error => {});
+  }
 
   getStateName(index) {
     return this.view.usersStates[index] ? 'changed' : 'not';

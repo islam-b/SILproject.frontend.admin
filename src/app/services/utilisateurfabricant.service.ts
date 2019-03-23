@@ -53,6 +53,13 @@ export class UtilisateurfabricantService {
     );
   }
 
+  setBlock(id, value) {
+    const header = this.authService.createAuthorizationHeader();
+    return this.http.put<UtilisateurFabricant>(`${this.baseUrl}marques/utilfab/${id}/bloquer`, value, {headers: header}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     let e: string;
