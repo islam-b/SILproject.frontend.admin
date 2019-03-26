@@ -7,7 +7,7 @@ import { MaterialModule} from './material';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { AuthentificationService} from './services/authentifaction.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './services/guards/authentificationGuard';
 import {AdministrationModule} from './pages/administration/administration.module';
@@ -25,6 +25,7 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
     BrowserAnimationsModule,
     MaterialModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AdministrationModule,

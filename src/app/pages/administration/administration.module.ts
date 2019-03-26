@@ -12,7 +12,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '../../material';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthentificationService} from '../../services/authentifaction.service';
 import {AuthGuard} from '../../services/guards/authentificationGuard';
@@ -27,6 +27,7 @@ import { NouvelUtilisateurComponent } from './nouvel-utilisateur/nouvel-utilisat
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { SupprimerUtilisateurComponent } from './supprimer-utilisateur/supprimer-utilisateur.component';
 
+
 @NgModule({
   declarations: [AdminUtilfabComponent, AdminMarquesComponent, AdminComponent,
     HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,
@@ -40,6 +41,7 @@ import { SupprimerUtilisateurComponent } from './supprimer-utilisateur/supprimer
     BrowserAnimationsModule,
     MaterialModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,

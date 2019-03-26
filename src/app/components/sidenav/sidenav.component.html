@@ -1,11 +1,11 @@
 <div style="padding-top: 90px;">
   <h6>Gérer les fabricants</h6>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 1}" (click)="selectedItem = 1;" [routerLink]="['/admin/admin-marques']"> Vue d'ensemble </div>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 2}" (click)="nouvelleMarque()"> Nouvelle marque </div>
+  <div id="link1" [ngClass]="{'choix': true, 'selected': selectedItem == 1}" (click)="selectedItem = 1;" [routerLink]="['/admin/admin-marques']"> Vue d'ensemble </div>
+  <div id="link2" [ngClass]="{'choix': true, 'selected': selectedItem == 2}" (click)="nouvelleMarque()"> Nouvelle marque </div>
   <hr style="margin:10px;">
   <h6>Gérer les utilisateurs</h6>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 3}" (click)="selectedItem = 3;" [routerLink]="['/admin/admin-utilfab']"> Vue d'ensemble </div>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 4}" (click)="nouvelUtilisateur()"> Nouvel utilisateur  </div>
-  <div [ngClass]="{'choix': true, 'selected': selectedItem == 5}"> Utilisateurs bloqués </div>
+  <div id="link3" [ngClass]="{'choix': true, 'selected': selectedItem == 3}" (click)="selectedItem = 3;" [routerLink]="['/admin/admin-utilfab']"> Vue d'ensemble </div>
+  <div id="link4" [ngClass]="{'choix': true, 'selected': selectedItem == 4}" (click)="nouvelUtilisateur()"> Nouvel utilisateur  </div>
+  <div id="link5" [ngClass]="{'choix': true, 'selected': selectedItem == 5}"> Utilisateurs bloqués </div>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthentificationService} from '../../services/authentifaction.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
       recherche: ''
     });
   }
+
   deconnexion() {
     this.authService.signout();
     this.router.navigate(['/connexion']);

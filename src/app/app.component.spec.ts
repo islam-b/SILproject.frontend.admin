@@ -19,7 +19,8 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-
+  ///https://www.youtube.com/watch?v=Yod3tBt0beM
+  //https://www.youtube.com/watch?v=D6qPDww2X8k
   it(`should have as title 'admin'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
