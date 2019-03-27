@@ -37,7 +37,7 @@ export class UtilisateurfabricantService {
       catchError(this.handleError)
     );
   }
-  deleteUser(id) {
+  deleteUser(id): Observable<any> {
     const header = this.authService.createAuthorizationHeader();
     return this.http.delete(`${this.baseUrl}marques/utilfab/${id}`, {headers: header}).pipe(
       catchError(this.handleError)

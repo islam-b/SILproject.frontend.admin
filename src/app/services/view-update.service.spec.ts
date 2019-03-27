@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { ViewUpdateService } from './view-update.service';
 import {HttpClientModule} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {UtilisateurfabricantService} from './utilisateurfabricant.service';
 
 describe('ViewUpdateService', () => {
   let mockRouter = {

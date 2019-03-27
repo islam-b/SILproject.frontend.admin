@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Marque} from '../entities/Marque';
 import {catchError, map} from 'rxjs/operators';
-import {Subject, throwError} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 import {AuthentificationService} from './authentifaction.service';
 
 @Injectable({
@@ -51,7 +51,7 @@ export class MarqueService {
     );
   }
 
-  deleteMarque(code) {
+  deleteMarque(code): Observable<any> {
     const header = this.authService.createAuthorizationHeader();
     return this.http.delete(`${this.baseUrl}marques/${code}`, {headers: header}).pipe(
       catchError(this.handleError)
