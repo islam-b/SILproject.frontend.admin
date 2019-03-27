@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class AuthentificationService {
       this.router.navigate(['/admin/admin-marques']);
     }
   }
-  signin(Mail: string, Mdp: string) {
-    return this.http.post(`${this.baseUrl}auth/admin`, {Mail, Mdp}).pipe(
+  signin(Mail: string, Mdp: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}auth/admin`, {Mail, Mdp}).pipe(
       catchError(this.handleError)
     );
   }
