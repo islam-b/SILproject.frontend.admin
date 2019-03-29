@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import {MatDialog, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 
 import { TableUtilisateursFabricantsComponent } from './table-utilisateurs-fabricants.component';
 import {TableMarquesComponent} from '../table-marques/table-marques.component';
@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {By} from '@angular/platform-browser';
+import {of} from 'rxjs';
 
 describe('TableUtilisateursFabricantsComponent', () => {
   let component: TableUtilisateursFabricantsComponent;
@@ -16,6 +17,9 @@ describe('TableUtilisateursFabricantsComponent', () => {
   let mockRouter = {
     navigate: jasmine.createSpy('navigate')
   };
+  let dialogSpy: jasmine.Spy;
+  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TableUtilisateursFabricantsComponent],
@@ -31,6 +35,7 @@ describe('TableUtilisateursFabricantsComponent', () => {
       ],
       providers: [{provide: Router, useValue: mockRouter}]
     }).compileComponents();
+    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   }));
 
   beforeEach(() => {
@@ -61,5 +66,9 @@ describe('TableUtilisateursFabricantsComponent', () => {
   it('should contains the table paginator', () => {
     const element = fixture.debugElement.query(By.css('mat-paginator'));
     expect(element.nativeElement).toBeTruthy();
+  });
+  it(':Nouvel utilisateur should open "Nouvel utilisateur" dialog' , () => {
+    component.nouvelUtilisateur();
+    expect(dialogSpy).toHaveBeenCalled();
   });
 });

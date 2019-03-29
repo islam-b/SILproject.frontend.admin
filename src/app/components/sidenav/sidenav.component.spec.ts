@@ -16,6 +16,8 @@ import {AuthGuard} from '../../services/guards/authentificationGuard';
 import {AdminComponent} from '../../pages/administration/admin/admin.component';
 import {AdminMarquesComponent} from '../../pages/administration/admin-marques/admin-marques.component';
 import {AdminUtilfabComponent} from '../../pages/administration/admin-utilfab/admin-utilfab.component';
+import {of} from 'rxjs';
+import {MatDialog} from '@angular/material';
 
 
 
@@ -26,7 +28,9 @@ describe('SidenavComponent', () => {
     navigate: jasmine.createSpy('navigate')
   };
   let mockRoute: any = { snapshot: {}};
-
+  let dialogSpy: jasmine.Spy;
+  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -47,6 +51,7 @@ describe('SidenavComponent', () => {
       ]
     })
       .compileComponents();
+    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
   }));
 
@@ -54,6 +59,7 @@ describe('SidenavComponent', () => {
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
   });
 
   it('should create', () => {
@@ -77,19 +83,27 @@ describe('SidenavComponent', () => {
   });
 
 
-  it('should navigate to "Gestion marques" on clicking "Vue d\'ensemble' , () => {
-    const link = fixture.debugElement.query( By.css('#link1'));
+  it(':Vue d\'ensemble (Gestion marques) should navigate to "Gestion marques"' , async(() => {
+    const link = fixture.debugElement.query( By.css('#link3'));
     link.triggerEventHandler('click', {});
     fixture.whenStable().then(() => {
       expect(mockRouter).toHaveBeenCalledWith(['/admin/admin-marques']);
     });
-  });
-  it('should navigate to "Gestion utilisteurs" on clicking "Vue d\'ensemble' , () => {
+  }));
+  it(':Vue d\'ensemble (Gestion utilisateurs) should navigate to "Gestion utilisateurs"' , async(() => {
     const link = fixture.debugElement.query( By.css('#link3'));
     link.triggerEventHandler('click', {});
     fixture.whenStable().then(() => {
       expect(mockRouter).toHaveBeenCalledWith(['/admin/admin-utilfab']);
     });
+  }));
+  it(':Nouvelle marque should open "Nouvelle marque" dialog' , () => {
+    component.nouvelleMarque();
+    expect(dialogSpy).toHaveBeenCalled();
+  });
+  it(':Nouvel utilisateur should open "Nouvel utilisateur" dialog' , () => {
+    component.nouvelUtilisateur();
+    expect(dialogSpy).toHaveBeenCalled();
   });
 
 });

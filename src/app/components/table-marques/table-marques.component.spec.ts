@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import {MatDialog, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 
 import { TableMarquesComponent } from './table-marques.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -8,6 +8,7 @@ import {MaterialModule} from '../../material';
 import {HttpClientModule} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {By} from '@angular/platform-browser';
+import {of} from 'rxjs';
 
 describe('TableMarquesComponent', () => {
   let component: TableMarquesComponent;
@@ -15,6 +16,10 @@ describe('TableMarquesComponent', () => {
   let mockRouter = {
     navigate: jasmine.createSpy('navigate')
   };
+  let dialogSpy: jasmine.Spy;
+  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TableMarquesComponent ],
@@ -30,6 +35,7 @@ describe('TableMarquesComponent', () => {
       ],
       providers: [{provide: Router, useValue: mockRouter}]
     }).compileComponents();
+    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   }));
 
   beforeEach(() => {
@@ -61,4 +67,34 @@ describe('TableMarquesComponent', () => {
     const element = fixture.debugElement.query(By.css('mat-paginator'));
     expect(element.nativeElement).toBeTruthy();
   });
+  it(':Nouvelle marque should open "Nouvelle marque" dialog' , () => {
+    component.nouvelleMarque();
+    expect(dialogSpy).toHaveBeenCalled();
+  });
+  it(':Nouvel utilisateur (icone) should open "Nouvel utilisateur" dialog' , async(() => {
+    fixture.whenStable().then(() => {
+      const link = fixture.debugElement.query(By.css('.new-user'));
+      link.triggerEventHandler('click', {});
+      expect(component.nouvelUtilisateur).toHaveBeenCalled();
+      expect(dialogSpy).toHaveBeenCalled();
+    });
+  }));
+  it(':Modifier marque (icone) should open "Modifier marque" dialog' , async(() => {
+    fixture.whenStable().then(() => {
+      const link = fixture.debugElement.query(By.css('.edit-mark'));
+      link.triggerEventHandler('click', {});
+      expect(component.modifierMarque).toHaveBeenCalled();
+      expect(dialogSpy).toHaveBeenCalled();
+    });
+  }));
+  it(':Supprimer marque (icone) should open "Supprimer marque" dialog' , async(() => {
+    fixture.whenStable().then(() => {
+      const link = fixture.debugElement.nativeElement.querySelector('.delete-mark');
+      link.click();
+      expect(component.supprimerMarque).toHaveBeenCalled();
+      expect(dialogSpy).toHaveBeenCalled();
+    });
+  }));
+
+
 });
