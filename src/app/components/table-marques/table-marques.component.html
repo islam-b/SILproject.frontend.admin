@@ -42,7 +42,7 @@
         <td [@popOverState]="getStateName(i)" mat-cell *matCellDef="let element;let i = index;">
           <div style="display: flex;flex-direction: row;" id="gestion">
 
-            <img  (click)="nouvelUtilisateur(element.CodeMarque)" class="op new-user" src="../../../assets/images/Icons/new-user.png">
+            <img  (click)="nouvelUtilisateur(element.CodeMarque)" class="op newuser" src="../../../assets/images/Icons/new-user.png">
             <img (click)="modifierMarque(element.CodeMarque,i)" class="op edit-mark" src="../../../assets/images/Icons/edit.png">
             <img (click)="supprimerMarque(element.CodeMarque)" class="op delete-mark" src="../../../assets/images/Icons/rubbish-bin-delete-button.png">
 

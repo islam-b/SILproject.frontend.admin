@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.25% </span>
+        <span class="strong">65.63% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>26/32</span>
+        <span class='fraction'>21/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.27% </span>
+        <span class="strong">18.18% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/11</span>
+        <span class='fraction'>2/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/10</span>
+        <span class='fraction'>5/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.78% </span>
+        <span class="strong">62.96% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/27</span>
+        <span class='fraction'>17/27</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -186,7 +186,7 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,17 +201,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -277,8 +277,8 @@ export class TableMarquesDataSource extends DataSource&lt;Marque&gt; {
     // Set the paginator's length
     this.paginator.length = this.data.length;
 &nbsp;
-    return merge(...dataMutations).pipe(map(() =&gt; {
-      return this.getPagedData(this.getSortedData([...this.data]));
+    return merge(...dataMutations).pipe(map(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return this.getPagedData(this.getSortedData([...this.data]));</span>
     }));
   }
 &nbsp;
@@ -292,18 +292,18 @@ export class TableMarquesDataSource extends DataSource&lt;Marque&gt; {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: Marque[]) {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    return data.splice(startIndex, this.paginator.pageSize);
+<span class="fstat-no" title="function not covered" >  private g</span>etPagedData(data: Marque[]) {
+    const startIndex = <span class="cstat-no" title="statement not covered" >this.paginator.pageIndex * this.paginator.pageSize;</span>
+<span class="cstat-no" title="statement not covered" >    return data.splice(startIndex, this.paginator.pageSize);</span>
   }
 &nbsp;
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: Marque[]) {
-    if (!this.sort.active || <span class="branch-1 cbranch-no" title="branch not covered" >this.sort.direction === '')</span> {
-      return data;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  private g</span></span>etSortedData(data: Marque[]) {
+    if (!this.sort.active || this.sort.direction === '') {
+<span class="cstat-no" title="statement not covered" >      return data;</span>
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return data.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; {</span>
@@ -328,7 +328,7 @@ function <span class="fstat-no" title="function not covered" >compare(</span>a, 
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Mar 29 2019 16:16:39 GMT+0100 (CET)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Mar 29 2019 23:17:23 GMT+0100 (CET)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

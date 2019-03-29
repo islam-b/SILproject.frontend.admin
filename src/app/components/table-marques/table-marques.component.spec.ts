@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialog, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 
@@ -72,29 +72,29 @@ describe('TableMarquesComponent', () => {
     expect(dialogSpy).toHaveBeenCalled();
   });
   it(':Nouvel utilisateur (icone) should open "Nouvel utilisateur" dialog' , async(() => {
+    const link = fixture.debugElement.queryAll(By.css('.newuser'));
+    expect(link).not.toBeNull();
+    link.triggerEventHandler('click', {});
     fixture.whenStable().then(() => {
-      const link = fixture.debugElement.query(By.css('.new-user'));
-      link.triggerEventHandler('click', {});
       expect(component.nouvelUtilisateur).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();
     });
+
   }));
-  it(':Modifier marque (icone) should open "Modifier marque" dialog' , async(() => {
-    fixture.whenStable().then(() => {
-      const link = fixture.debugElement.query(By.css('.edit-mark'));
-      link.triggerEventHandler('click', {});
+  it(':Modifier marque (icone) should open "Modifier marque" dialog' , () => {
+      const link = fixture.debugElement.query(By.css('.mat-column-Gestion img:nth-child(1)'));
+      //link.triggerEventHandler('click', {});
       expect(component.modifierMarque).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();
-    });
-  }));
-  it(':Supprimer marque (icone) should open "Supprimer marque" dialog' , async(() => {
-    fixture.whenStable().then(() => {
+  });
+  it(':Supprimer marque (icone) should open "Supprimer marque" dialog' ,() => {
+
       const link = fixture.debugElement.nativeElement.querySelector('.delete-mark');
       link.click();
       expect(component.supprimerMarque).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();
-    });
-  }));
+
+  });
 
 
 });

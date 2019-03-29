@@ -83,20 +83,19 @@ describe('SidenavComponent', () => {
   });
 
 
-  it(':Vue d\'ensemble (Gestion marques) should navigate to "Gestion marques"' , async(() => {
+  it(':Vue d\'ensemble (Gestion marques) should navigate to "Gestion marques"' , () => {
+    const link = fixture.debugElement.query( By.css('#link1'));
+    link.triggerEventHandler('click', {});
+    fixture.detectChanges();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/admin/admin-marques']);
+
+  });
+  it(':Vue d\'ensemble (Gestion utilisateurs) should navigate to "Gestion utilisateurs"' , () => {
     const link = fixture.debugElement.query( By.css('#link3'));
     link.triggerEventHandler('click', {});
-    fixture.whenStable().then(() => {
-      expect(mockRouter).toHaveBeenCalledWith(['/admin/admin-marques']);
-    });
-  }));
-  it(':Vue d\'ensemble (Gestion utilisateurs) should navigate to "Gestion utilisateurs"' , async(() => {
-    const link = fixture.debugElement.query( By.css('#link3'));
-    link.triggerEventHandler('click', {});
-    fixture.whenStable().then(() => {
-      expect(mockRouter).toHaveBeenCalledWith(['/admin/admin-utilfab']);
-    });
-  }));
+    fixture.detectChanges();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/admin/admin-utilfab']);
+  });
   it(':Nouvelle marque should open "Nouvelle marque" dialog' , () => {
     component.nouvelleMarque();
     expect(dialogSpy).toHaveBeenCalled();
