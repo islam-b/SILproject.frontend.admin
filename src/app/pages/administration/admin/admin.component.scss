@@ -1,6 +1,36 @@
+
 #nav-container {
+   /* Stay in place */
+
+  z-index: 1;
+  width: 18%;
   background-color: #fafafa;
   padding-left: 0px;
   padding-right: 0px;
-  z-index: 0;
+}
+
+
+.fixedN {
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+
+
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  position:relative;
+  z-index: 1;
+}
+.header {
+  max-height:70px;
+  background-color:#fafafa;
+  z-index: 2;
 }

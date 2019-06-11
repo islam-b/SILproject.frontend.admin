@@ -4,6 +4,8 @@ import {Marque} from '../entities/Marque';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, Subject, throwError} from 'rxjs';
 import {AuthentificationService} from './authentifaction.service';
+import {PusherService} from './pusher.service';
+import {ViewUpdateService} from './view-update.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,19 @@ export class MarqueService {
   baseUrl: string = localStorage.getItem('baseUrl');
   marquesSubject = new Subject<Marque[]>();
   marques: Marque[];
+  marquesStates;
 
-  constructor(private authService: AuthentificationService, private http: HttpClient) { }
+
+  constructor(private authService: AuthentificationService, private http: HttpClient,
+              private pushService: PusherService) {
+    this.pushService.marqueChannel.bind('newMark', data => {
+      this.marques.unshift(data);
+      this.emitMarques();
+      this.notify(0);
+    });
+  }
+
+
 
   getAllMarques() {
     return this.http.get<Marque[]>(`${this.baseUrl}marques`);
@@ -26,7 +39,16 @@ export class MarqueService {
   }
 
   emitMarques() {
+    this.marquesStates = new Array(this.marques.length);
     this.marquesSubject.next(this.marques);
+  }
+  async notify(rowIndex) {
+    this.marquesStates[rowIndex] = !this.marquesStates[rowIndex];
+    await this.delay(500);
+    this.marquesStates[rowIndex] = !this.marquesStates[rowIndex];
+  }
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
   newMarque(marque) {

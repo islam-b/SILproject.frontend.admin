@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,6 +15,11 @@ export class AdminComponent implements OnInit {
   }
   change() {
     this.router.navigate(['/admin//admin-marques']);
+  }
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event) {
+    console.log(event);
+    console.log('scrolling');
   }
 
 }

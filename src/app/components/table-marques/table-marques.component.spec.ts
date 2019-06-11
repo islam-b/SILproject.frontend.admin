@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {By} from '@angular/platform-browser';
 import {of} from 'rxjs';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('TableMarquesComponent', () => {
   let component: TableMarquesComponent;
@@ -33,7 +34,8 @@ describe('TableMarquesComponent', () => {
         ReactiveFormsModule,
         HttpClientModule
       ],
-      providers: [{provide: Router, useValue: mockRouter}]
+      providers: [{provide: Router, useValue: mockRouter}],
+
     }).compileComponents();
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   }));
@@ -71,25 +73,26 @@ describe('TableMarquesComponent', () => {
     component.nouvelleMarque();
     expect(dialogSpy).toHaveBeenCalled();
   });
-  it(':Nouvel utilisateur (icone) should open "Nouvel utilisateur" dialog' , async(() => {
+  it(':Nouvel utilisateur (icone) should open "Nouvel utilisateur" dialog' , (done) => {
     const link = fixture.debugElement.queryAll(By.css('.newuser'));
     expect(link).not.toBeNull();
-    link.triggerEventHandler('click', {});
+    // link.triggerEventHandler('click', {});
     fixture.whenStable().then(() => {
+
       expect(component.nouvelUtilisateur).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();
+      done();
     });
-
-  }));
+  });
   it(':Modifier marque (icone) should open "Modifier marque" dialog' , () => {
-      const link = fixture.debugElement.query(By.css('.mat-column-Gestion img:nth-child(1)'));
-      //link.triggerEventHandler('click', {});
+      const link = fixture.debugElement.query(By.css('.mat-column-Gestion img:nth-child(1)')).nativeElement;
+      link.click();
       expect(component.modifierMarque).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();
   });
   it(':Supprimer marque (icone) should open "Supprimer marque" dialog' ,() => {
 
-      const link = fixture.debugElement.nativeElement.querySelector('.delete-mark');
+      const link = fixture.debugElement.nativeElement.query(By.css('.delete-mark')).nativeElement;
       link.click();
       expect(component.supprimerMarque).toHaveBeenCalled();
       expect(dialogSpy).toHaveBeenCalled();

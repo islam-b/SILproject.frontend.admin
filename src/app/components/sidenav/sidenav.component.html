@@ -6,6 +6,6 @@
   <h6>Gérer les utilisateurs</h6>
   <div id="link3" [ngClass]="{'choix': true, 'selected': selectedItem == 3}" (click)="navigateToGestionUtilisateurs()"> Vue d'ensemble </div>
   <div id="link4" [ngClass]="{'choix': true, 'selected': selectedItem == 4}" (click)="nouvelUtilisateur()"> Nouvel utilisateur  </div>
-  <div id="link5" [ngClass]="{'choix': true, 'selected': selectedItem == 5}"> Utilisateurs bloqués </div>
+  <div id="link5" [ngClass]="{'choix': true, 'selected': selectedItem == 5}" (click)="navigateToUtilisateursBloques()"> Utilisateurs bloqués </div>
 
 </div>

@@ -63,7 +63,7 @@ export class ModifierMarqueComponent implements OnInit {
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
-            await this.view.notify(this.rowIndex);
+            await this.marqueService.notify(this.rowIndex);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
@@ -74,7 +74,7 @@ export class ModifierMarqueComponent implements OnInit {
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
-          await this.view.notify(this.rowIndex);
+          await this.marqueService.notify(this.rowIndex);
           this.onNoClick();
         }
       }, error => {

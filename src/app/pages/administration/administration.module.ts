@@ -26,6 +26,8 @@ import {TableUtilisateursFabricantsComponent} from '../../components/table-utili
 import { NouvelUtilisateurComponent } from './nouvel-utilisateur/nouvel-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { SupprimerUtilisateurComponent } from './supprimer-utilisateur/supprimer-utilisateur.component';
+import {TableUtilisateursBloquesComponent} from '../../components/table-utilisateurs-bloques/table-utilisateurs-bloques.component';
+import {UtilisateursBloquesComponent} from './utilisateurs-bloques/utilisateurs-bloques.component';
 
 
 @NgModule({
@@ -33,7 +35,7 @@ import { SupprimerUtilisateurComponent } from './supprimer-utilisateur/supprimer
     HeaderComponent, FooterComponent, SidenavComponent, NouvelleMarqueComponent,
     TableMarquesComponent, ModifierMarqueComponent, SupprimerMarqueComponent,
     TableUtilisateursFabricantsComponent, NouvelUtilisateurComponent, ModifierUtilisateurComponent,
-    SupprimerUtilisateurComponent],
+    SupprimerUtilisateurComponent, TableUtilisateursBloquesComponent, UtilisateursBloquesComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule,

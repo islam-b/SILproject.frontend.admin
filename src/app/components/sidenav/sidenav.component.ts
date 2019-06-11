@@ -43,5 +43,9 @@ export class SidenavComponent implements OnInit {
     this.selectedItem = 3;
     this.router.navigate(['/admin/admin-utilfab']);
   }
+  navigateToUtilisateursBloques() {
+    this.selectedItem = 5;
+    this.router.navigate(['/admin/utilfab-bloques']);
+  }
 
 }

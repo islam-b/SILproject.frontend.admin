@@ -1,16 +1,26 @@
 
 
-<app-header></app-header>
 
-<div class="row ">
-  <div class="col-2 vh-100 z-depth-1 fixed-top" id="nav-container">
-    <app-sidenav></app-sidenav>
-  </div>
-  <div class="col-10 offset-2" style="padding-top:80px;">
-    <router-outlet></router-outlet>
+
+<header class="header m-auto z-depth-1 fixed-top">
+  <app-header ></app-header>
+</header>
+
+<div class="content">
+  <div class="row ">
+    <div class="col-2 min-vh-100 z-depth-1 fixedN" id="nav-container">
+      <app-sidenav></app-sidenav>
+    </div>
+    <div class="col-10 offset-2" style="padding-top: 80px;" >
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
-<app-footer></app-footer>
+n
+<footer class="footer">
+  <app-footer></app-footer>
+</footer>
+
 
 
 

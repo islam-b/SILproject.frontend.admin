@@ -77,6 +77,6 @@ export class TableMarquesComponent implements OnInit {
 
 
   getStateName(index) {
-    return this.view.marquesStates[index] ? 'changed' : 'not';
+    return this.marqueService.marquesStates[index] ? 'changed' : 'not';
   }
 }

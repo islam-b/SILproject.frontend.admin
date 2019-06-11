@@ -11,7 +11,7 @@ export class ViewUpdateService {
 
  selectedItemSubject = new Subject<number>();
  selectedItem = 1;
- marquesStates;
+
  usersStates;
   constructor(private marqueService: MarqueService, private utilfabService: UtilisateurfabricantService) { }
 
@@ -24,14 +24,12 @@ export class ViewUpdateService {
   showAllmarque() {
     this.marqueService.getAllMarques().subscribe(marques => {
       this.marqueService.marques = marques;
-      this.marquesStates = new Array(marques.length);
       this.marqueService.emitMarques();
     });
   }
   showNewMarque(code) {
     this.marqueService.getMarque(code).subscribe(marque => {
       this.marqueService.marques.unshift(marque);
-      this.marquesStates = new Array(this.marqueService.marques.length);
       this.marqueService.emitMarques();
     });
   }
@@ -39,7 +37,6 @@ export class ViewUpdateService {
     this.marqueService.getMarque(code).subscribe(marque => {
       const i = this.marqueService.marques.findIndex(m => m.CodeMarque === code);
       this.marqueService.marques[i] = marque;
-      this.marquesStates = new Array(this.marqueService.marques.length);
       this.marqueService.emitMarques();
     });
   }
@@ -50,16 +47,8 @@ export class ViewUpdateService {
       }
       return true;
     });
-    this.marquesStates = new Array(this.marqueService.marques.length);
     this.marqueService.emitMarques();
   }
-
-  async notify(rowIndex) {
-    this.marquesStates[rowIndex] = !this.marquesStates[rowIndex];
-    await this.delay(500);
-    this.marquesStates[rowIndex] = !this.marquesStates[rowIndex];
-  }
-
   filter(filterValue) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase();
@@ -71,7 +60,7 @@ export class ViewUpdateService {
       nom = m.NomMarque.toString().toLowerCase();
       return nom.includes(filterValue) || code.includes(filterValue);
     });
-    this.marquesStates = new Array(data.length);
+    this.marqueService.marquesStates = new Array(data.length);
     this.marqueService.marquesSubject.next(data);
   }
 

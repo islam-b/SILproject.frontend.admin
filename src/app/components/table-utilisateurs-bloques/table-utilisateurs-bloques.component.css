@@ -1,0 +1,19 @@
+
+table {
+
+  width: 100%;
+}
+#tab-container {
+  padding: 0px;
+  width: 100%;
+
+}
+.mark-logo {
+  height:40px;
+  width: 40px;
+  margin: 5px;
+}
+
+th {
+  width: 16.6%;
+}

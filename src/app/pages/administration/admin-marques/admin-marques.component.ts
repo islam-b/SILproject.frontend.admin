@@ -13,7 +13,7 @@ import {SupprimerMarqueComponent} from '../supprimer-marque/supprimer-marque.com
 })
 export class AdminMarquesComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
   ngOnInit() {}
 

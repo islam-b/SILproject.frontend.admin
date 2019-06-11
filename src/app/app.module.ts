@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './services/guards/authentificationGuard';
 import {AdministrationModule} from './pages/administration/administration.module';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {PusherService} from './services/pusher.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
     MatSortModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [AuthentificationService, AuthGuard],
+  providers: [AuthentificationService, AuthGuard, PusherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

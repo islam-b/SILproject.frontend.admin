@@ -49,22 +49,18 @@ export class NouvelleMarqueComponent implements OnInit {
         CodeMarque: marque.CodeMarque, NomMarque: marque.NomMarque}).subscribe( async data1 => {
         if (this.logoFile !== null) {
           this.marqueService.uploadLogoMarque(this.logoFile, marque.CodeMarque).subscribe(async data2 => {
-            this.view.showNewMarque(marque.CodeMarque);
             this.isLoading = false;
             this.complete = true;
             await this.delay(750);
-            await this.view.notify(0);
             this.onNoClick();
           }, error => {
             this.isLoading = false;
             this.errorMsg = error;
           });
         } else {
-          this.view.showNewMarque(marque.CodeMarque);
           this.isLoading = false;
           this.complete = true;
           await this.delay(750);
-          await this.view.notify(0);
           this.onNoClick();
         }
       }, error => {
