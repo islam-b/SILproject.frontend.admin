@@ -25,7 +25,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-10 offset-1 m-auto "><div id="errorMsg" class="m-auto "><mdb-icon  *ngIf="errorMsg" fas icon="exclamation-circle"></mdb-icon><b class="ml-2">{{errorMsg}}</b></div></div>
+          <div class="col-10 offset-1 m-auto ">
+            <div id="errorMsg" class="m-auto "><mdb-icon  *ngIf="errorMsg" fas icon="exclamation-circle"></mdb-icon><b class="ml-2">{{errorMsg}}</b></div></div>
+
+        </div>
+        <div id="progress" *ngIf="isLoading" class=" col-2 offset-5 m-auto">
+          <mat-progress-spinner
+            color="primary"
+            diameter="50"
+            mode="indeterminate">
+          </mat-progress-spinner>
         </div>
       </div>
     </div>

@@ -11,7 +11,8 @@ import {Router} from '@angular/router';
 export class ConnexionComponent implements OnInit {
 
   signinform: FormGroup;
-  private errorMsg: string
+  isLoading = false;
+  private errorMsg: string;
   constructor(private authentifcationService: AuthentificationService, private formBuilder: FormBuilder, private router:Router) { }
 
   ngOnInit(): void {
@@ -33,12 +34,15 @@ export class ConnexionComponent implements OnInit {
 
   onSubmit() {
    if (this.formIsValid()) {
+      this.isLoading = true;
       const value = this.signinform.value;
       this.authentifcationService.signin(value['Mail'], value['Mdp']).subscribe(data => {
         this.authentifcationService.setAuthentified(data);
         console.log(data);
+        this.isLoading = false;
         this.router.navigate(['/admin/admin-marques']);
       }, error => {
+        this.isLoading = false;
         this.errorMsg = error;
       });
     }

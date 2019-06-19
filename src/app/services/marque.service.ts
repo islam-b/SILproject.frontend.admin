@@ -16,15 +16,20 @@ export class MarqueService {
   marquesSubject = new Subject<Marque[]>();
   marques: Marque[];
   marquesStates;
+  filterMarqueValueSubject = new Subject<string>();
 
 
   constructor(private authService: AuthentificationService, private http: HttpClient,
               private pushService: PusherService) {
     this.pushService.marqueChannel.bind('newMark', data => {
       this.marques.unshift(data);
+      this.emitFilterValue('');
       this.emitMarques();
       this.notify(0);
     });
+  }
+  emitFilterValue(value: string) {
+    this.filterMarqueValueSubject.next(value);
   }
 
 

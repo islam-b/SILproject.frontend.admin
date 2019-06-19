@@ -32,10 +32,14 @@ export class TableMarquesComponent implements OnInit {
   displayedColumns = ['Nom', 'Code', 'Logo', 'Gestion'];
 
   searchForm: FormGroup;
+  filterValue = '';
   constructor(private formBuilder: FormBuilder, private marqueService: MarqueService,
               private view: ViewUpdateService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.marqueService.filterMarqueValueSubject.subscribe(value => {
+      this.filterValue = value;
+    });
     this.dataSource = new TableMarquesDataSource(this.view, this.marqueService, this.paginator, this.sort);
     this.searchForm = this.formBuilder.group({
       filter: ''
@@ -71,8 +75,8 @@ export class TableMarquesComponent implements OnInit {
     console.log(rowIndex);
   }
 
-  applyFilter(filterValue: string) {
-    this.view.filter(filterValue);
+  applyFilter() {
+    this.view.filter(this.filterValue);
   }
 
 
